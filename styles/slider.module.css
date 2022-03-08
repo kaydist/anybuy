@@ -1,0 +1,33 @@
+.thumb{
+    height: 1rem;
+    line-height: 25px;
+    width: 1rem;
+    text-align: center;
+    background-color: orangered;
+    color: #000;
+    border-radius: 50%;
+    cursor: grab;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 1rem;
+}
+
+.label{
+    line-height: 25px;
+    text-align: center;
+    background-color: #ffffff00;
+    color: #000;
+    border-radius: 9999px;
+    cursor: grab;
+    top: 1rem;
+    min-width: 3rem;
+    border: 1px solid #00000020;
+}
+
+.track{
+    height: 0.2rem;
+    background: orangered;
+    border-radius: 999px;
+    padding-right: 1rem;
+}

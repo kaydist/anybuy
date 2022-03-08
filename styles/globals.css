@@ -1,9 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.1vw;
 }
 
 a {
@@ -13,4 +17,17 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 1023px) {
+  html,
+  body {
+  font-size: 2.3vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  html,
+  body {
+  font-size: 4.2vw;
+  }
 }
