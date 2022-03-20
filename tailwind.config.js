@@ -46,8 +46,13 @@ module.exports = {
             paddingBottom: theme('spacing.2'),
             paddingLeft: theme('spacing.4'),
             paddingRight: theme('spacing.4'),
-            ":focus": {
+            outline: "0px",
+            '&:focus': {
               borderColor: theme('colors.primary'),
+            },
+            '&:checked ~ .checkmark': {
+              borderColor: theme('colors.primary'),
+              borderWidth: theme('borderWidth.2')
             }
           },
       
@@ -58,7 +63,11 @@ module.exports = {
             paddingRight: theme('spacing.6'),
             backgroundColor: theme('colors.primary'),
             borderRadius: theme('borderRadius.full'),
-            color: theme('colors.white')
+            color: theme('colors.white'),
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: theme('spacing.2')
           },
 
           '.outlined_btn': {
@@ -69,7 +78,11 @@ module.exports = {
             borderRadius: theme('borderRadius.full'),
             borderColor: theme('colors.primary'),
             borderWidth: '0.09rem',
-            color: theme('colors.primary')
+            color: theme('colors.primary'),
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: theme('spacing.2')
           },
 
           '.removed': {

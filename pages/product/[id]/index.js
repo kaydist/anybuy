@@ -1,5 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Image from 'next/image'
+import { useSelector, useDispatch } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../../store/actions/index';
+import { AddToCart } from '../../../store/actions/quantityChange';
 
 //componrnets
 import ProductIndex from '../../../components/product/ProductIndex'
@@ -14,6 +18,11 @@ import Earpod from "../../../assets/items/mHXOMt3WlF8.png"
 import ReviewCard from '../../../components/Review/ReviewCard'
 import Rating from '../../../components/Review/Rating'
 import SuccessImage from "../../../assets/svgs/success.svg"
+import Link from 'next/link'
+
+//data
+import { DealOfTheDay } from '../../../data/products'
+import QuantityButton from '../../../components/product/QuantityButton'
 
 
 export const Star=()=>{
@@ -27,7 +36,33 @@ export const Star=()=>{
 }
 
 function item({product}) {
+    const dispatch = useDispatch()
     const {id, name, image, discount, sellingPrice, originalPrice, about,  colors, rating, reviews } = product
+
+    //quantity of items
+    const [quantity, setQuantity] = useState(1)
+
+    const Increment=()=>{
+        setQuantity(quantity + 1)
+    }
+
+    const Decrement=()=>{
+        if(quantity <= 1){
+            setQuantity(quantity = 1)
+        }else{
+            setQuantity(quantity - 1)
+        }
+    }
+
+    //total price
+    const [totalCost, setTotalCost] = useState(0)
+    // const getTotal=()=>{
+    //     setTotalCost(
+    //         quantity * sellingPrice
+    //     )
+    //     return (quantity * sellingPrice)
+    // }
+
     return (
         <>
         
@@ -48,7 +83,10 @@ function item({product}) {
                             {
                                 colors.map((color) =>{
                                 return (
-                                    <div key={color.id} className="rounded-full h-8 w-8" style={{backgroundColor: `${color.color}`}}/>
+                                    <div key={color.id} className="rounded-full h-8 w-8 p-1 border-2 bg-transparent" style={{borderColor: `${color.color}`}}>
+                                        <div className="rounded-full w-full h-full" style={{backgroundColor: `${color.color}`}}/>
+                                    </div>
+                                    
                                 )
                             }) 
                             }
@@ -58,15 +96,39 @@ function item({product}) {
                     <div>
                         <p>Quantity</p>
                         <div className="flex flex-row gap-6 mt-3 items-center">
-                            <button className="rounded-full h-8 w-8 bg-white flex items-center justify-center">-</button>
-                            1
-                            <button className="rounded-full h-8 w-8 bg-white flex items-center justify-center">+</button>
+                            <button className="rounded-full h-8 w-8 bg-white flex items-center justify-center"
+                            onClick={Decrement}>-</button>
+                            {quantity}
+                            <button 
+                            className="rounded-full h-8 w-8 bg-white flex items-center justify-center"
+                            onClick={Increment}
+                            >+</button>
                         </div>
                     </div>
                     
                     <div className="flex gap-6">
-                        <button className="btn rounded-xl">Add to Cart</button>
-                        <button className="btn rounded-xl bg-[#112211]">Buy Now</button>
+                        <button 
+                        className="btn rounded-xl"
+                        onClick={()=> {
+                            const promising = new Promise((resolve)=>{
+                                resolve(quantity * Number(sellingPrice))
+                            })
+                            promising.then((totalItemPrice)=> {
+                                dispatch(AddToCart({quantity, id, name, image, sellingPrice, originalPrice, colors, totalItemPrice}))
+                            })
+                            
+                        }} 
+                            >
+                                Add to Cart
+                        </button>
+                        <Link href="/cart"><button className="btn rounded-xl bg-[#112211]">Buy Now</button></Link>
+                    </div>
+                    <div>
+                        {/* {
+                        cart.map((cartitem, idx)=> {
+                            console.log(cartitem.name)
+                        })
+                        } */}
                     </div>
                 </div>
             </div>
@@ -116,14 +178,31 @@ function item({product}) {
 
             </section>
 
-            <ProductIndex title="Related Products">
-                <Product 
-                discount=""
-                name="Apple Wireless Airpod"
-                image={Earpod}
-                sellingPrice="70,000"
-                originalPrice="80,000"
-                />
+            <ProductIndex title="Top Deals of the Day">
+                {
+                    DealOfTheDay.filter((product, idx) => idx < 4).map((product)=> {
+                    const {
+                        id,
+                        name,
+                        image,
+                        originalPrice,
+                        discount,
+                        sellingPrice
+                    } = product
+
+                    return(    
+                        <Product 
+                        key={id}
+                        id={id}
+                        discount={discount}
+                        name={name}
+                        image={image}
+                        sellingPrice={sellingPrice}
+                        originalPrice={originalPrice}
+                        />
+                    )
+                })
+                }
             </ProductIndex>
             
             <Modal>
@@ -133,7 +212,7 @@ function item({product}) {
                     <p className="font-bold">Item Added to Cart</p>
                     <div className="flex w-full gap-4">
                         <button className="w-full underline-offset-4 underline">Continue Shopping</button>
-                        <button className="btn rounded-xl w-full">Proceed to Checkout</button>
+                        <Link href="/cart"><button className="btn rounded-xl w-full">Proceed to Checkout</button></Link>
                     </div>
                 </div>
             </Modal>

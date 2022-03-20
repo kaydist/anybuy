@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link"
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 //components
 import { Formik } from "formik";
@@ -7,8 +9,12 @@ import { Formik } from "formik";
 //icons
 import FacebookIcon from "../../assets/svgs/Facebook-icon.svg"
 import GoogleIcon from "../../assets/svgs/Google-icon.svg"
+import { Login } from "../../store/actions/authActions";
 
 const login = () => {
+    const dispatch = useDispatch()
+    const router = useRouter()
+    
     return (
         <section className="flex justify-center items-center w-full h-fit min-h-[80vh]">
             <div className="card w-full lg:w-fit lg:px-14 lg:py-5">
@@ -36,11 +42,21 @@ const login = () => {
                             ) {
                             errors.email = 'Invalid email address';
                             }
+
+                            if (!values.password) {
+                            errors.password = 'Required';
+                            } else if (
+                            values.password !== "password"
+                            ) {
+                            errors.password = 'Invalid Password';
+                            }
+
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
+                            dispatch(Login());
+                            router.push("/");
                             setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
                             setSubmitting(false);
                             }, 400);
                         }}
@@ -53,7 +69,6 @@ const login = () => {
                             handleBlur,
                             handleSubmit,
                             isSubmitting,
-                            /* and other goodies */
                         }) => (
                             <form onSubmit={handleSubmit} className="flex flex-col">
 
@@ -82,6 +97,16 @@ const login = () => {
                                     className="input"
                                 />
                                 <p className="text-red-600">{errors.password && touched.password && errors.password}</p>
+                                <Link href="/auth/forgetpwd">
+                                    <p className="w-full text-center mt-2 font-black text-primary">
+                                        {
+                                            errors.password && touched.password && errors.password
+                                            ? "Forgot Password"
+                                            : ""
+                                        }
+                                    </p>
+                                </Link>
+                                
                             </div>
                             
                             <button type="submit" className="btn mt-8" disabled={isSubmitting}>

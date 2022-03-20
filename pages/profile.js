@@ -1,22 +1,35 @@
 import Image from "next/image"
+import { useDispatch } from "react-redux";
+import {Logout} from "../store/actions/authActions"
 
 //components
 import { Formik } from "formik";
 import Modal from '../components/Modal'
 
 //svg
-import SuccessImage from "../assets/svgs/success.svg"
-import EmptyUserImage from "../assets/icons/user.svg"
+import LogoutIcon from "../assets/icons/logout.svg"
 import ResetPassword from "../components/profile/ResetPassword";
 import ShippingInfo from "../components/profile/ShippingInfo";
 import ProfileInfo from "../components/profile/ProfileInfo";
 
 
 function profile() {
+    const dispatch = useDispatch()
+
     return (
         <>
         <div>
-            <h2 className="text-4xl font-extrabold">Profile</h2>
+            <div className="w-full flex justify-between items-center">
+                <h2 className="text-4xl font-extrabold">Profile</h2>
+                <button 
+                className="btn bg-[#434A51] font-extrabold h-[3.5rem]"
+                onClick={()=>{
+                    dispatch(Logout())
+                }}
+                >
+                    <Image src={LogoutIcon} alt="" height="100"/> Log Out
+                </button>
+            </div>
             <div className="flex flex-wrap lg:flex-nowrap gap-8 lg:gap-8 justify-between mt-6">
 
                 <section className="w-full lg:w-1/2">

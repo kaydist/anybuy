@@ -42,10 +42,10 @@ function AppFooter() {
 
                     <div className="w-full flex flex-row gap-2 bg-white px-1 rounded-lg">
                     <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter Email Address"
-                    className="input w-full border-0 m-0 py-0 focus:border-0"
+                        type="email"
+                        name="email"
+                        placeholder="Enter Email Address"
+                        className="input text-black w-full border-0 m-0 py-0"
                     />
                     <button className="my-1 btn rounded-lg">Subscribe</button>
                     </div>

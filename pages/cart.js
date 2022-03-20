@@ -1,10 +1,17 @@
 import Image from 'next/image'
+import { useSelector, useDispatch } from "react-redux";
+
+//redux functions
+import { RemoveFromCart } from '../store/actions/quantityChange';
 
 //image
-import Earpod from "../assets/items/mHXOMt3WlF8.png"
+import DeleteIcon from "../assets/icons/trash.svg"
 import SummaryCard from '../components/cart/summarycard'
+import QuantityButton from '../components/product/QuantityButton'
 
 function cart() {
+    const cart = useSelector((state) => state.cart.cart)
+    const dispatch = useDispatch()
     return (
         <div>
             <h2 className="text-4xl font-extrabold">Cart</h2>
@@ -13,6 +20,7 @@ function cart() {
                     <table className="text-lg table-fixed border-collapse">
                         <thead>
                             <tr>                                    
+                                <th> </th>
                                 <th>Product</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
@@ -20,28 +28,52 @@ function cart() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="border-t border-[#9F9F9F15]">
-                                <td className="p-4 border-r border-[#9F9F9F15]">
-                                    <div className="flex items-center justify-start gap-4">
-                                        <div className="bg-white w-40 h-32 rounded-xl flex items-center "><Image src={Earpod} alt="" height='200' width="200" /></div>
-                                        <p className="font-bold">Cool Red Xbox Series X|S Controller Skin</p>
-                                    </div>
-                                </td>
-                                <td className="p-4 border-r border-[#9F9F9F15]">
-                                    <p className="font-black">₦40,000</p>
-                                    <p className="font-black removed">₦50,000</p>
-                                </td>
-                                <td className="p-4 border-r border-[#9F9F9F15]">
-                                <div className="flex flex-row gap-6 mt-3 items-center">
-                                    <button className="rounded-full h-8 w-8 bg-white flex items-center justify-center">-</button>
-                                    1
-                                    <button className="rounded-full h-8 w-8 bg-white flex items-center justify-center">+</button>
-                                    </div>
-                                </td>
-                                <td className="px-4">
-                                    <p className="font-black text-xl">₦40,000</p>
-                                </td>
-                            </tr>                            
+                            {
+                                cart.map((product, idx) =>{
+                                    const {
+                                        id,
+                                        name,
+                                        image,
+                                        originalPrice,
+                                        discount,
+                                        sellingPrice,
+                                        totalItemPrice
+                                    } = product
+                                    return (
+                                        <tr className="border-t border-[#9F9F9F15]" key={idx}>
+                                            <td className="p-4 border-r border-[#9F9F9F15]">
+                                                <Image 
+                                                src={DeleteIcon} 
+                                                alt="remove from cart" 
+                                                width="100" 
+                                                onClick={()=> {
+                                                    dispatch(RemoveFromCart(id))
+                                                }}
+                                                />
+                                            </td>
+                                            <td className="p-4 border-r border-[#9F9F9F15]">
+                                                <div className="flex items-center justify-start gap-4">
+                                                    <div className="bg-white w-40 h-32 rounded-xl flex items-center flex-[0.35]">
+                                                        <Image src={image} alt="" height='200' width="200" />
+                                                    </div>
+                                                    <p className="font-bold flex-[0.65]">{name}</p>
+                                                </div>
+                                            </td>
+                                            <td className="p-4 border-r border-[#9F9F9F15]">
+                                                <p className="font-black">₦{sellingPrice}</p>
+                                                <p className="font-black removed">₦{originalPrice}</p>
+                                            </td>
+                                            <td className="p-4 border-r border-[#9F9F9F15]">
+                                                <QuantityButton />
+                                            </td>
+                                            <td className="px-4">
+                                                <p className="font-black text-xl">₦{totalItemPrice}</p>
+                                            </td>
+                                        </tr>  
+                                    )
+                                })
+                            } 
+
                         </tbody>
                     </table>
 

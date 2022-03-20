@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import {useState, useEffect} from 'react'
 
 //components
 import { Formik } from "formik";
@@ -29,21 +30,42 @@ export const SaveIcon=()=>{
 }
 
 function checkout() {
+
+    const handleAccordion=(x)=>{
+
+        const allCards = document.querySelectorAll(".content");        
+        allCards.forEach((index) => {
+            index.classList.remove("h-fit");
+            index.classList.remove("opacity-1");
+            index.classList.remove("mt-8");
+            index.classList.add("h-0");
+            index.classList.add("opacity-0");
+        });
+            const activeCard = document.getElementById(`content-${x}`)
+            activeCard.classList.remove("h-0");
+            activeCard.classList.remove("opacity-0");
+            activeCard.classList.add("h-fit");
+            activeCard.classList.add("opacity-1");
+            activeCard.classList.add("mt-8");
+    }
+
+
     return (
         <>
         <div>
             <h2 className="text-4xl font-extrabold">Checkout</h2>
             <div className="flex flex-wrap gap-8 lg:gap-0 justify-between mt-6">
+
                 <section className="w-full lg:w-[60%]">
+                <div class="flex flex-col gap-8 items-center justify-center h-fit" id="accordion_container">
 
-                <div class="flex flex-col gap-8 items-center justify-center h-fit">
-
-                    <div className="w-full card">
-                        <div className="text-xl font-bold flex justify-between items-center mt-2">
+                    <div className="w-full card" id="1" data-accordion="01">                        
+                        <div className="text-xl font-bold flex justify-between items-center mt-2" onClick={()=>handleAccordion(1)}>                            
                             <h2>Shipping information</h2>
                             <span><Image src={Arrow} alt="" height="10"/></span>
                         </div>
 
+                        <div className='h-fit opacity-1 mt-8 content' id='content-1'>
                         <Formik
                         initialValues={{ email: '', password: '' }}
                         validate={values => {
@@ -74,7 +96,7 @@ function checkout() {
                             isSubmitting,
                             /* and other goodies */
                         }) => (
-                            <form onSubmit={handleSubmit} className="flex flex-col w-full my-12">
+                            <form onSubmit={handleSubmit} className="flex flex-col w-full mb-12">
                             
                             <div className="flex flex-col lg:flex-row lg:gap-6">
                                 <div className="flex mb-4 flex-col w-full">
@@ -144,16 +166,18 @@ function checkout() {
                             </form>
                         )}
                         </Formik>
+                        </div>
                     </div>
 
-                    <div className="w-full card">
-                        <div className="text-xl font-bold flex justify-between items-center mt-2">
+                    <div className="w-full card" id="2" data-accordion="02">
+                        <div className="text-xl font-bold flex justify-between items-center mt-2" onClick={()=>handleAccordion(2)}>
                             <h2>Payment Method</h2>
                             <span><Image src={Arrow} alt="" height="10"/></span>
                         </div>
 
+                        <div className='h-0 opacity-0 content' id='content-2'>
                         <div className="flex gap-3">
-                            <div className="input w-36 h-16 p-2 flex items-center justify-center">
+                            <div id="visa" className="input w-36 h-16 p-2 flex items-center justify-center">
                                 <Image src={VisaLogo} alt="Visa" width='80' />
                             </div>
                             <div className="input w-36 h-16 p-2 flex items-center justify-center">
@@ -278,7 +302,7 @@ function checkout() {
                         )}
                         </Formik>
                     </div>
-
+                    </div>
                     
 
                 </div>

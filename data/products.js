@@ -2,10 +2,11 @@ export const AllProducts =[
     {
         id: "0001",
         name: "PS4 Wireless Controller",
+        cartegory: "",
         image: "https://res.cloudinary.com/kaydist/image/upload/v1646751491/Anybuy/ce43DT3n3ko_qqkcbk.png",
-        originalPrice: "40,000",
+        originalPrice: "40000",
         discount: "30%",
-        sellingPrice: "30,000",
+        sellingPrice: "30000",
         about: "dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa. dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa",
         colors: [
             {
@@ -59,10 +60,11 @@ export const AllProducts =[
     {
         id: "0002",
         name: "VR 3d Ultra Sensitivity",
+        cartegory: "",
         image: "https://res.cloudinary.com/kaydist/image/upload/v1646751506/Anybuy/Virtual_reality_headset_on_desk_zjkled.png",
-        originalPrice: "120,000",
+        originalPrice: "120000",
         discount: "10%",
-        sellingPrice: "100,000",
+        sellingPrice: "100000",
         about: "dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa. dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa",
         colors: [
             {
@@ -116,10 +118,11 @@ export const AllProducts =[
     {
         id: "0003",
         name: "PS5 Dual Sense Wireless Controller",
+        cartegory: "",
         image: "https://res.cloudinary.com/kaydist/image/upload/v1646753192/Anybuy/image_4_2x_zofnji.png",
-        originalPrice: "85,000",
+        originalPrice: "85000",
         discount: "10%",
-        sellingPrice: "70,000",
+        sellingPrice: "70000",
         about: "dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa. dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa",
         colors: [
             {
@@ -173,10 +176,11 @@ export const AllProducts =[
     {
         id: "0004",
         name: "Sony Playstation 5 console with Wireless Controller",
+        cartegory: "",
         image: "https://res.cloudinary.com/kaydist/image/upload/v1646751358/Anybuy/image_15_mpprs0.png",
-        originalPrice: "445,000",
+        originalPrice: "445000",
         discount: "13%",
-        sellingPrice: "550,000",
+        sellingPrice: "550000",
         about: "dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa. dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa",
         colors: [
             {
@@ -230,10 +234,11 @@ export const AllProducts =[
     {
         id: "0005",
         name: "Apple Air Pod",
+        cartegory: "",
         image: "https://res.cloudinary.com/kaydist/image/upload/v1646753646/Anybuy/mHXOMt3WlF8_mtgaiv.png",
-        originalPrice: "45,000",
+        originalPrice: "45000",
         discount: "3%",
-        sellingPrice: "50,000",
+        sellingPrice: "50000",
         about: "dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa. dLibero sit egestas eu magna quis molestie imperdiet id sodales. Mattis id faucibus fames nunc vitae ut tellus at interdum. Blandit purus, arcu euismod vulputate elit tellus blandit. Non, fermentum in suscipit leo. Consequat aliquet phasellus massa",
         colors: [
             {

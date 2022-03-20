@@ -4,9 +4,8 @@ import Image from 'next/image'
 //component
 import Product from '../components/product/product'
 import Banner from '../components/Banner'
+import Search from '../components/search'
 
-//icon
-import SearchIcon from "../assets/icons/search.svg"
 
 //items
 import Earpod from "../assets/items/mHXOMt3WlF8.png"
@@ -34,15 +33,7 @@ export default function Home() {
           <button className="btn mt-4 lg:hidden">Explore All</button>
       </div>
       
-      <div className="w-full lg:w-1/2 flex flex-row gap-2 bg-white px-4 rounded-lg mt-36 mb-12 lg:my-12 overflow-visible">
-        <div className="p-3 my-2 w-10 h-10 bg-primary flex items-center justify-center rounded-full"><Image src={SearchIcon} alt="" height="100" /></div>
-        <input
-          type="search"
-          name="search"
-          placeholder="Search Product"
-          className="input w-full border-0 m-0 py-0 focus:border-0"
-        />
-      </div>
+      <Search />
 
       <div className="w-full overflow-hidden">
         <h3 className="font-extrabold text-xl text-white mb-4 w-full text-center">Recommeded for you</h3>
@@ -118,7 +109,7 @@ export default function Home() {
       </div>
     </section>
 
-    <ProductIndex title="Top Deals of the Day">
+    <ProductIndex title="Top Deals of the Day" link="deals-of-the-day">
     {
       DealOfTheDay.filter((product, idx) => idx < 4).map((product)=> {
         const {
@@ -151,7 +142,7 @@ export default function Home() {
     btntext="Explore All"
     />
 
-    <ProductIndex title="Gaming">
+    <ProductIndex title="Gaming" link="gaming">
     {
       Gaming.filter((product, idx) => idx < 4).map((product)=> {
         const {
