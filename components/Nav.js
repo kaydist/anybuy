@@ -8,7 +8,7 @@ import { useSelector } from "react-redux"
 
 //images
 import MenuBar from "../assets/icons/Menu Bar.svg"
-import Logo from "../assets/svgs/logo.svg"
+import Logo from "../assets/svgs/Logo.svg"
 
 //svgs
 import EmptyUserImage from "../assets/icons/user.svg"

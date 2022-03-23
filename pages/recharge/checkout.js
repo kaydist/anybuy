@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 
 //components
 import { Formik } from "formik";
@@ -13,7 +13,6 @@ import VisaLogo from "../../assets/svgs/Visa Logo.svg"
 import SuccessImage from "../../assets/svgs/success.svg"
 
 //image
-import Earpod from "../../assets/items/mHXOMt3WlF8.png"
 import RechargeReview from '../../components/cart/RechargeReview';
 
 export const SaveIcon=()=>{
