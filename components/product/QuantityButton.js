@@ -1,25 +1,35 @@
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { actionCreators } from '../../store/actions';
+import { Increment, Decrement } from '../../store/actions/quantityChange';
 
 
-function QuantityButton() {
-    
-    const quantity = (useSelector((state) => state.cart.cart))
+function QuantityButton({product}) {
     const dispatch = useDispatch();
-    const {Increment, Decrement} = bindActionCreators(actionCreators, dispatch)
 
     return (
         <div className="flex flex-row gap-6 mt-3 items-center">
-            <button className="rounded-full h-8 w-8 bg-white flex items-center justify-center"
-            onClick={Decrement}>-</button>
             {
-                
+                product.quantity === 1
+                ? <button 
+                disabled
+                className="rounded-full h-8 w-8 bg-white flex items-center justify-center"
+                onClick={()=>{
+                    dispatch(Decrement(product))
+                }}
+                >-</button>
+                : <button 
+                className="rounded-full h-8 w-8 bg-white flex items-center justify-center"
+                onClick={()=>{
+                    dispatch(Decrement(product))
+                }}
+                >-</button>
             }
+            {product.quantity}
             <button 
             className="rounded-full h-8 w-8 bg-white flex items-center justify-center"
-            onClick={Increment}
+            onClick={()=>{
+                dispatch(Increment(product))
+            }}
             >+</button>
         </div>
     )

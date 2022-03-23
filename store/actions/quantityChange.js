@@ -1,15 +1,15 @@
-export const  Increment=()=>{
-    return (dispatch) => {
-        dispatch({
-            type: "increase",
-        })
+export const  Increment=(item)=>{
+    return{
+        type: "increaseQuantity",
+        payload: item
     }
 }
 
-export const  Decrement=()=>{
+export const  Decrement=(item)=>{
     return (dispatch) => {
         dispatch({
-            type: "decrease",
+            type: "decreaseQuantity",
+            payload: item
         })
     }
 }

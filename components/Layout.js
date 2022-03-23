@@ -1,11 +1,36 @@
 //Next imports
+import React from 'react'
 import Head from 'next/head'
+import {useRouter} from 'next/router'
 import AppFooter from './AppFooter'
+
+//React Imports
+import { useEffect, useState} from 'react'
+import { useDispatch } from 'react-redux'
+import {isMobile} from '../store/actions/screenSizeAction'
 
 import AuthFooter from "./AuthFooter"
 import Nav from "./Nav"
-import Notification from './notification'
+import SideNav from "./SideNav"
+
+
+
 const Layout=({children})=>{
+    const dispatch = useDispatch()
+    const router = useRouter()
+    const [currentScreenWidth, setcurrentScreenWidth] = useState(0)
+
+    const width =()=>{   
+        let x = window.innerWidth
+        setcurrentScreenWidth(x)
+    }
+
+    window.onresize =  width;
+    useEffect(() => {
+        width() 
+        dispatch(isMobile(currentScreenWidth))       
+    }, [currentScreenWidth])
+
     return(
         <div>
         <Head>
@@ -15,15 +40,19 @@ const Layout=({children})=>{
         @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&display=swap');
         </style>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+        </Head>
+
         <Nav />
-        <main className="bg-body-bg min-h-[90vh] relative h-fit lg:min-h-[80vh] md:px-12 lg:px-40 px-4 py-4 z-10 lg:pb-32">
-            <Notification />
+        <SideNav />
+
+        <main className="bg-body-bg min-h-[90vh] relative h-fit lg:min-h-[80vh] md:px-12 lg:px-40 px-4 pb-4 pt-24 z-10 lg:pb-32">
             {children}
         </main>
 
-        <AppFooter />
-        <AuthFooter />
+        {router.pathname.includes("/auth")
+        ?<AuthFooter />
+        :<AppFooter />
+        }
         </div>
     )
 }

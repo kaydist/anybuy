@@ -12,7 +12,7 @@ module.exports = {
           'muted': '#C4C4C4',
           'notification-bg': '#FFA573',
           'footer-bg': '#141B22',
-          'body-bg': '#E5E5E5'
+          'body-bg': '#F4F4F4'
         },
 
         gridTemplateColumns: {
@@ -67,7 +67,10 @@ module.exports = {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: theme('spacing.2')
+            gap: theme('spacing.2'),
+            '&:hover': {
+              cusor: 'pointer',
+            }
           },
 
           '.outlined_btn': {
@@ -82,12 +85,18 @@ module.exports = {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: theme('spacing.2')
+            gap: theme('spacing.2'),
+            '&:hover': {
+              cusor: 'pointer',
+            }
           },
 
           '.removed': {
             textDecoration: "line-through",
-            color: theme('colors.muted')
+            color: theme('colors.muted'),
+            '&:hover': {
+              cusor: 'pointer',
+            }
           },
 
         })

@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { RobotSVG } from '../assets/svgs/RobotSVG'
 
 
@@ -12,7 +13,7 @@ function EmptySearch() {
 some other great products</p>
             </p>
 
-            <button className="btn">All Products</button>
+            <Link href="/cartegory/all-products"><button className="btn">All Products</button></Link>
         </div>
     )
 }

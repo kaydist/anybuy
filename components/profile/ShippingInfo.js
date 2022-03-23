@@ -1,3 +1,4 @@
+import React, { useState, useRef} from "react";
 import { Formik } from "formik";
 import Modal from '../Modal'
 
@@ -25,12 +26,48 @@ export const SaveIcon=()=>{
     )
 }
 
+export const CloseIcon=()=>{
+    return(
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="x">
+        <path id="Vector" d="M18 6.91699L6 18.917" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="Vector_2" d="M6 6.91699L18 18.917" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        </svg>
+
+    )
+}
+
 function ShippingInfo() {
+    const EditShippingModal = useRef(true)
+    const [openModal, setOpenModal] = useState(false)
+
+    // useEffect(() => {
+    //     console.log(openModal)
+    // }, [openModal])
+
+    const onClickOut=(e)=>{
+        const element = e.target
+        // if (EditShippingModal.current && !EditShippingModal.current.contains(element)){
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     setOpenModal(!openModal)
+        // }
+        if (EditShippingModal.current && !document.querySelector(".modal").contains(element)){
+            console.log(document.querySelector(".modal"))
+        }
+     
+        console.log(EditShippingModal.current)
+        console.log(!document.querySelector(".modal").contains(element))
+    }
+
     return (
         <>
             <div className="text-xl font-bold flex justify-between items-center mt-2">
                 <h2>Shipping info</h2>
-                <span><EditIcon /></span>
+                <span onClick={()=>setOpenModal(true)}>
+                    <EditIcon />
+                </span>
             </div>
 
             <div className="mt-4 mb-8 text-left">
@@ -39,11 +76,14 @@ function ShippingInfo() {
                 <p>2118 Thornridge Cir. Syracuse, Connecticut 35624</p>
             </div>
 
-            <Modal>
+            <Modal ref={EditShippingModal} state={openModal}>
                 <div className="card w-[92%] md:w-[32rem] mx-auto">
 
-                <div className="w-full font-bold text-2xl mb-8">
-                    Edit Shipping Info
+                <div className="w-full font-bold text-2xl mb-8 flex justify-between">
+                    <span className="block">Edit Shipping Info</span>
+                    <span className="block"  onClick={()=>setOpenModal(false)}>
+                        <CloseIcon />
+                    </span>
                 </div> 
                 <Formik
                 initialValues={{ email: '', password: '' }}

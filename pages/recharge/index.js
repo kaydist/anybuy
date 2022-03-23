@@ -200,6 +200,7 @@ function BuyData() {
                                         }}
                                         onBlur={handleBlur}
                                         value={values.name}
+                                        pattern="[0]{1}[7-9]{1}[1-9]{9}"
                                         placeholder=""
                                         className="input recharge_form"
                                     />

@@ -9,7 +9,7 @@ import cart from "./reducers/cartReducer";
 const persistConfig = {
     key: 'AnybuyCart',
     storage,
-    whitelist: ['cart']
+    whitelist: ['cart', 'auth', 'rechargeCart']
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)

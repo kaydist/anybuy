@@ -1,4 +1,4 @@
-import react, {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import ReactSlider from "react-slider";
 import SliderStyle from "../styles/slider.module.css"
 
@@ -14,7 +14,7 @@ const ResizableSlider = ({thumb, onclick, onchange}) => {
                 className="horizontal-slider w-[18rem] top-100"
                 thumbClassName={SliderStyle.thumb}
                 trackClassName={SliderStyle.track}
-                defaultValue={[1, 10]}
+                defaultValue={[50000, 100000]}
                 ariaLabelledby={['Lower-thumb', 'Upper-thumb']}
                 ariaValuetext={state => {               
                 }}
@@ -27,9 +27,9 @@ const ResizableSlider = ({thumb, onclick, onchange}) => {
                 }}
                 renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
                 pearling
-                min={1}
-                max={10}
-                minDistance={1}
+                min={50000}
+                max={100000}
+                minDistance={500}
             />
 
             <div>

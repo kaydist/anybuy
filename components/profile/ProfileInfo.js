@@ -1,4 +1,6 @@
+import React from 'react'
 import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
 
 //components
 import Modal from "../Modal";
@@ -49,13 +51,34 @@ export const UploadIcon=()=>{
     )
 }
 
+export const CloseIcon=()=>{
+    return(
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="x">
+        <path id="Vector" d="M18 6.91699L6 18.917" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="Vector_2" d="M6 6.91699L18 18.917" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        </svg>
+
+    )
+}
+
+
 function ProfileInfo() {
+    const EditProfileModal = useRef(null)
+    const [openModal, setOpenModal] = useState(false)
+
+    useEffect(() => {
+        console.log(openModal)
+    }, [openModal])
     return (
         <>            
             <div className="w-full card">
                 <div className="text-xl font-bold flex justify-between items-center mt-2">
                     <h2>Profile Info</h2>
-                    <span><EditIcon /></span>
+                    <span onClick={()=>setOpenModal(!openModal)}>
+                        <EditIcon />
+                    </span>
                 </div>
 
                 <div className="flex flex-col gap-6 my-4 items-center justify-center">
@@ -70,11 +93,14 @@ function ProfileInfo() {
                 </div>
             </div>
 
-            <Modal>
+            <Modal ref={EditProfileModal} state={openModal} close={()=>setOpenModal(!openModal)}>
                 <div className="card w-[92%] md:w-[32rem] mx-auto">
 
-                <div className="w-full font-bold text-2xl mb-8">
-                    Edit Profile Info
+                <div className="w-full font-bold text-2xl mb-8 flex justify-between">
+                    <span className="block">Edit Profile Info</span>
+                    <span className="block"  onClick={()=>setOpenModal(false)}>
+                        <CloseIcon />
+                    </span>
                 </div> 
                 <Formik
                 initialValues={{ email: '', password: '' }}

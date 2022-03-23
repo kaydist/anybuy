@@ -1,5 +1,6 @@
-import Head from 'next/head'
+import React from 'react'
 import Image from 'next/image'
+import {useRouter} from "next/router"
 
 //component
 import Product from '../components/product/product'
@@ -19,6 +20,46 @@ import ProductIndex from '../components/product/ProductIndex'
 import { DealOfTheDay, Gaming, Recommendation } from '../data/products'
 
 export default function Home() {
+  const router = useRouter()
+  const categories=[
+    {
+      id: 1,
+      name: "Gaming",
+      title: "Gaming",
+      thumbnail: "https://res.cloudinary.com/kaydist/image/upload/v1646751499/Anybuy/categories/Ellipse_2_tiutud.png"
+    },
+    {
+      id: 2,
+      name: "Speakers",
+      title: "Speakers",
+      thumbnail: "https://res.cloudinary.com/kaydist/image/upload/v1646751499/Anybuy/categories/Ellipse_3_ojmeqr.png"
+    },
+    {
+      id: 3,
+      name: "Phones",
+      title: "Phones",
+      thumbnail: "https://res.cloudinary.com/kaydist/image/upload/v1646751498/Anybuy/categories/Ellipse_5_h3zwkr.png"
+    },
+    {
+      id: 4,
+      name: "Laptops",
+      title: "Laptops",
+      thumbnail: "https://res.cloudinary.com/kaydist/image/upload/v1646751498/Anybuy/categories/Ellipse_6_ylxo7f.png"
+    },
+    {
+      id: 5,
+      name: "Laptops",
+      title: "Laptops",
+      thumbnail: "https://res.cloudinary.com/kaydist/image/upload/v1646751498/Anybuy/categories/Ellipse_6_ylxo7f.png"
+    },
+    {
+      id: 6,
+      name: "VR",
+      title: "VR",
+      thumbnail: "https://res.cloudinary.com/kaydist/image/upload/v1646751499/Anybuy/categories/Ellipse_7_calli1.png"
+    },
+  ]
+
   return (
     <>
     <section className="relative overflow-visible">
@@ -40,24 +81,10 @@ export default function Home() {
           <div className="flex flex-row lg:justify-center pr-8 lg:px-0 items-center gap-8 overflow-x-auto overflow-y-hidden w-screen lg:w-full flex-nowrap">
           {
             Recommendation.filter((product, idx) => idx < 3).map((product)=> {
-              const {
-                  id,
-                  name,
-                  image,
-                  originalPrice,
-                  discount,
-                  sellingPrice
-              } = product
-
               return(    
                   <Product 
-                  key={id}
-                  id={id}
-                  discount={discount}
-                  name={name}
-                  image={image}
-                  sellingPrice={sellingPrice}
-                  originalPrice={originalPrice}
+                  key={product.id}
+                  product={product}
                   />
               )
           })
@@ -67,13 +94,16 @@ export default function Home() {
       </div>
 
       <div className="absolute w-full lg:h-[34rem] top-0 h-[18rem]">
-        <Image src={Ps4Pad} alt="" layout="fill"/>
+        <div className="relative w-full h-full">
+          <Image src={Ps4Pad} alt="" layout="fill" objectFit="fill"/>
+        </div>
       </div>
     </section>
 
     <section className="mt-20 overflow-hidden">
       <h2 className="font-extrabold text-xl mb-4">Recharge Your Phone</h2>
       <div className="flex flex-row gap-8">
+
         <div className="card gap-2 flex flex-col items-center justify-center">
           <Image src={Airtime} alt="" height="50"/>
           <p>Airtime</p>
@@ -82,29 +112,36 @@ export default function Home() {
           <Image src={Data} alt="" height="50"/>
           <p>Data</p>
         </div>
+        
       </div>
     </section>
 
     <section className="mt-20 card overflow-hidden">
       <h2 className="font-extrabold text-xl mb-4">Categories</h2>
       <div className="flex flex-row items-center gap-8 overflow-x-auto overflow-y-hidden w-screen sm:w-full whitespace-nowrap flex-nowrap pr-8">
-        
-        <div className="card gap-2 flex flex-col items-center justify-center">
-          <div className="rounded-full w-16 h-16 relative bg-black"><Image src={Airtime} alt="" layout="fill"/></div>
-          <p>Gaming</p>
-        </div>
-        <div className="card gap-2 flex flex-col items-center justify-center">
-          <div className="rounded-full w-16 h-16 relative bg-black"><Image src={Airtime} alt="" layout="fill"/></div>
-          <p>Gaming</p>
-        </div>
-        <div className="card gap-2 flex flex-col items-center justify-center">
-          <div className="rounded-full w-16 h-16 relative bg-black"><Image src={Airtime} alt="" layout="fill"/></div>
-          <p>Gaming</p>
-        </div>
-        <div className="card gap-2 flex flex-col items-center justify-center">
-          <div className="rounded-full w-16 h-16 relative bg-black"><Image src={Airtime} alt="" layout="fill"/></div>
-          <p>Gaming</p>
-        </div>
+
+        {
+          categories.map((category)=>{
+
+          return(
+            <div 
+            key={category.id}
+            className="gap-2 flex flex-col items-center justify-center"
+            onClick={()=>{
+              router.push({
+                pathname: `/category/${category.name}`,
+                query: category,
+              })
+            }}
+            >
+              <div className="rounded-full w-16 h-16 relative">
+                <Image src={category.thumbnail} alt="" layout="fill"/>
+              </div>
+              <p>{category.name}</p>
+            </div>
+          )
+          })
+        }
 
       </div>
     </section>
@@ -112,26 +149,12 @@ export default function Home() {
     <ProductIndex title="Top Deals of the Day" link="deals-of-the-day">
     {
       DealOfTheDay.filter((product, idx) => idx < 4).map((product)=> {
-        const {
-            id,
-            name,
-            image,
-            originalPrice,
-            discount,
-            sellingPrice
-        } = product
-
         return(    
-            <Product 
-            key={id}
-            id={id}
-            discount={discount}
-            name={name}
-            image={image}
-            sellingPrice={sellingPrice}
-            originalPrice={originalPrice}
-            />
-        )
+          <Product 
+          key={product.id}
+          product={product}
+          />
+      )
     })
     }
     </ProductIndex>
@@ -145,26 +168,12 @@ export default function Home() {
     <ProductIndex title="Gaming" link="gaming">
     {
       Gaming.filter((product, idx) => idx < 4).map((product)=> {
-        const {
-            id,
-            name,
-            image,
-            originalPrice,
-            discount,
-            sellingPrice
-        } = product
-
         return(    
-            <Product 
-            key={id}
-            id={id}
-            discount={discount}
-            name={name}
-            image={image}
-            sellingPrice={sellingPrice}
-            originalPrice={originalPrice}
-            />
-        )
+          <Product 
+          key={product.id}
+          product={product}
+          />
+      )
     })
     }
     </ProductIndex>

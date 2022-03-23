@@ -1,3 +1,4 @@
+import React from 'react'
 import Image from "next/image";
 import Link from "next/link"
 import { useDispatch } from "react-redux";
@@ -56,9 +57,9 @@ const login = () => {
                         onSubmit={(values, { setSubmitting }) => {
                             dispatch(Login());
                             router.push("/");
-                            setTimeout(() => {
-                            setSubmitting(false);
-                            }, 400);
+                            // setTimeout(() => {
+                            // setSubmitting(false);
+                            // }, 400);
                         }}
                         >
                         {({

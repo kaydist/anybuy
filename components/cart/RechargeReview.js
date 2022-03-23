@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import {useState} from "react"
+import React, {useState} from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { RemoveFromRechargeCart } from '../../store/actions/quantityChange'
 

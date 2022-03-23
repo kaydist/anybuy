@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import {useState} from "react"
+import React, {useState} from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { RemoveFromCart } from '../../store/actions/quantityChange'
 
@@ -25,7 +25,7 @@ function OrderReview() {
                         const {
                             id,
                             name,
-                            image,
+                            activeType,
                             quantity,
                             totalItemPrice
                         } = product
@@ -33,7 +33,7 @@ function OrderReview() {
                         return(
                             <div key={id} className="flex items-center justify-start gap-4">
                             <div className="bg-muted w-40 h-30 rounded-xl flex items-center flex-[0.4]">
-                                <Image src={image} alt="" height='200' width="200" />
+                                <Image src={activeType} alt="" height='200' width="200" />
                             </div>
                             <div className="flex-[0.6]">
                                 <p className="font-bold">{name}</p>
@@ -47,7 +47,7 @@ function OrderReview() {
                             width='20' height='20' 
                             className="float-right"
                             onClick={()=>{
-                                dispatch(RemoveFromCart(id))
+                                dispatch(RemoveFromCart(product))
                             }}/>
                             </div>
                         )

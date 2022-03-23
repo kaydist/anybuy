@@ -8,20 +8,21 @@ const initiaState = {
 
 const cart = (state=initiaState, action) =>{
 
+    const getID = state.cart.find(item => item.id === action.payload.id)
+    const getIndex = state.cart.findIndex(item => item.id === action.payload.id)
+    const getItem = state.cart.find(item => item === getID)
+    let newArray = [...state.cart]
+
     switch (action.type){
         
         case "AddToCart":
-            const payloadId = action.payload.id
-            const getID = state.cart.find(item => item.id === payloadId)
-            const getIndex = state.cart.findIndex(item => item.id === payloadId)
-            const getItem = state.cart.find(item => item === getID)
 
             if(getID === undefined){
                 let newState = {
                     ...state,
                     cart: state.cart.concat(action.payload),
                     totalCartQuantity: state.totalCartQuantity + action.payload.quantity,
-                    totalCartPrice: state.totalCartPrice + action.payload.totalItemPrice
+                    totalCartPrice: state.totalCartPrice +  action.payload.totalItemPrice
                 }
                 return newState;
             }else{
@@ -38,20 +39,39 @@ const cart = (state=initiaState, action) =>{
             }
             
 
-        case "RemoveFromCart":
-            const removeID = state.cart.find(item => item.id === action.payload)
-            const removeItem = state.cart.find(item => item === removeID )
-            console.log(removeItem)
-            let newtotalCartQuantity = state.totalCartQuantity - removeItem.quantity
-            let newtotalCartPrice = state.totalCartPrice - removeItem.totalItemPrice            
-            let updatedState = state.cart.filter(item => item.id !== action.payload)
+        case "RemoveFromCart":          
+            let updatedState = state.cart.filter(item => item.id !== action.payload.id)
             
             return {
                 ...state,
                 cart: updatedState,
-                totalCartPrice: newtotalCartPrice,
-                totalCartQuantity: newtotalCartQuantity
+                totalCartPrice: state.totalCartPrice - getItem.totalItemPrice,
+                totalCartQuantity: state.totalCartQuantity - getItem.quantity,
             };
+        
+        case "increaseQuantity":
+            newArray[getIndex].quantity = getItem.quantity + 1
+            newArray[getIndex].totalItemPrice = getItem.totalItemPrice + Number(action.payload.sellingPrice)
+            
+            let newState = {
+                ...state,
+                cart: newArray,
+                totalCartQuantity: state.totalCartQuantity + 1,
+                totalCartPrice: state.totalCartPrice + Number(action.payload.sellingPrice)
+            }
+            return newState;
+
+        case "decreaseQuantity":   
+            newArray[getIndex].quantity = getItem.quantity - 1
+            newArray[getIndex].totalItemPrice = getItem.totalItemPrice - Number(action.payload.sellingPrice)
+            
+            return {
+                ...state,
+                cart: newArray,
+                totalCartQuantity: state.totalCartQuantity - 1,
+                totalCartPrice: state.totalCartPrice - Number(action.payload.sellingPrice)
+            };
+
 
         default:
             return state

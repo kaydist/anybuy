@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 
 //components
 import { Formik } from "formik";
