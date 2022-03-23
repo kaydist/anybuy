@@ -21,7 +21,7 @@ function SummaryCard() {
 
             <p className="text-center text-xs">Shipping informations and tax will be in the checkout</p>
 
-            <Link href="/checkout"><button className="btn w-full">Checkout</button></Link>
+            <Link href="/checkout" passHref><button className="btn w-full">Checkout</button></Link>
         </div>
     )
 }

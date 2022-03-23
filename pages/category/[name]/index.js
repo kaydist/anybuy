@@ -15,7 +15,7 @@ import FilterIcon from "../../../assets/icons/filter.svg"
 import EarpodBanner from "../../../assets/images/earpod.png"
 import Notification from "../../../components/Notification"
 
-function categories({AllProducts}) {
+function Categories({AllProducts}) {
     const router = useRouter()
 
     const filter=()=>{        
@@ -96,4 +96,4 @@ export const getServerSideProps = async() => {
     }
 }
 
-export default categories
+export default Categories

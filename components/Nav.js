@@ -73,11 +73,11 @@ function Nav() {
                 AuthState.loggedIn === false 
                 ? <div className="hidden lg:inline-block">
                     <ul>
-                        <Link href="/auth/login">
+                        <Link href="/auth/login" passHref>
                             <li className="relative inline-block mx-9 font-bold text-sm">Sign In</li>
                         </Link>
 
-                        <Link href="/auth/signup">
+                        <Link href="/auth/signup" passHref>
                             <li className="inline-block ml-9">
                                 <button className="px-8 py-3 btn font-bold text-sm">Create Account</button>
                             </li>
@@ -89,7 +89,7 @@ function Nav() {
                 : <div className="inline-block">
                     <ul className="flex">
 
-                        <Link href="/profile">
+                        <Link href="/profile" passHref>
                             <li className="relative flex justify-end items-center gap-4 lg:mx-9 font-bold text-sm">
                                 <div className="lg:hidden rounded-full h-6 w-6 flex items-center justify-center">
                                     <SearchIcon />
@@ -101,7 +101,7 @@ function Nav() {
                             </li>
                         </Link>
 
-                        <Link href="/cart">
+                        <Link href="/cart" passHref>
                             <li className="relative hidden lg:flex items-center gap-2 mx-9 font-bold text-sm">
                                 <div className="h-6 w-6 flex items-center justify-center relative">
                                     <Image src={CartIcon} alt="No profile Picture" height="100"/>

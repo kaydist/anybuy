@@ -33,7 +33,7 @@ function SideNav() {
                     <Image src={Logo} alt="AnyBuy" />
                 </div> 
 
-                <Link href="/cart">
+                <Link href="/cart" passHref>
                     <div className="relative flex items-center gap-2 font-bold text-sm">
                         <div className="h-6 w-6 flex items-center justify-center relative">
                             <Image src={CartIcon} alt="No profile Picture" height="100"/>

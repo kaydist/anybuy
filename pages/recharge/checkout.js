@@ -56,7 +56,7 @@ function checkout() {
             <div className="flex flex-wrap gap-8 lg:gap-0 justify-between mt-6">
 
                 <section className="w-full lg:w-[60%]">
-                <div class="flex flex-col gap-8 items-center justify-center h-fit" id="accordion_container">
+                <div className="flex flex-col gap-8 items-center justify-center h-fit" id="accordion_container">
 
                 <div className="w-full card" id="2" data-accordion="02">
                         <div className="text-xl font-bold flex justify-between items-center mt-2" onClick={()=>handleAccordion(2)}>
@@ -156,7 +156,7 @@ function checkout() {
                                     <input
                                         type="number"
                                         name="cvv"
-                                        maxlength = "3"
+                                        maxLength = "3"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         value={values.cvv}

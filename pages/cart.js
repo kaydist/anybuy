@@ -11,7 +11,7 @@ import DeleteIcon from "../assets/icons/trash.svg"
 import SummaryCard from '../components/cart/summarycard'
 import QuantityButton from '../components/product/QuantityButton'
 
-function cart() {
+function Cart() {
     let currentScreenWidth = useSelector((state)=> state.screenSize);
     const TotalState = useSelector((state) => state.cart)
     const cart = useSelector((state) => state.cart.cart)
@@ -144,7 +144,7 @@ function cart() {
                     </div>
                     </section>
 
-                    <Link href="/checkout"><button className="btn w-full h-12">Proceed to checkout</button></Link>
+                    <Link href="/checkout" passHref><button className="btn w-full h-12">Proceed to checkout</button></Link>
 
                 </div>
             }
@@ -154,4 +154,4 @@ function cart() {
     )
 }
 
-export default cart
+export default Cart

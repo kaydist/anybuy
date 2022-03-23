@@ -119,7 +119,7 @@ const VerifyEmail = () => {
                             <button type="submit" className="btn mt-8" disabled={isSubmitting}>
                                 Verify Email
                             </button>
-                            <p className="w-full text-center mt-2">Can't find email? <Link href="/auth/signup"><span className="font-black text-primary">Resend Email</span></Link></p>
+                            <p className="w-full text-center mt-2">Can't find email?<Link href='/auth/signup' passHref><span className="font-black text-primary"> Resend Email</span></Link></p>
                             </form>
                         )}
                         </Formik>                        

@@ -35,7 +35,7 @@ export const Star=({size})=>{
     )
 }
 
-function item({product}) {
+function Item({product}) {
     let currentScreenWidth = useSelector((state)=> state.screenSize);
     const productImageContainer = useRef(null)
     const [activeColor, setActiveColor] = useState(0) 
@@ -71,11 +71,9 @@ function item({product}) {
         let swatchColor = e.target.getAttribute("swatch")
         e.target.classList.add("after:border-2")
         e.target.classList.add("after:border-["+swatchColor+"]")
-        
         gsap.to(productImageContainer.current, {
             x: -coord, duration: 1, ease: "Power2.easeOut"
-        })
-        
+        })  
     }
 
     const ActiveTab = styled.div`
@@ -355,4 +353,4 @@ export const getServerSideProps = async(context) =>{
     }
 }
 
-export default item
+export default Item

@@ -10,9 +10,9 @@ import { Formik } from "formik";
 //icons
 import FacebookIcon from "../../assets/svgs/Facebook-icon.svg"
 import GoogleIcon from "../../assets/svgs/Google-icon.svg"
-import { Login } from "../../store/actions/authActions";
+import { login } from "../../store/actions/authActions";
 
-const login = () => {
+const Login = () => {
     const dispatch = useDispatch()
     const router = useRouter()
     
@@ -46,16 +46,12 @@ const login = () => {
 
                             if (!values.password) {
                             errors.password = 'Required';
-                            } else if (
-                            values.password !== "password"
-                            ) {
-                            errors.password = 'Invalid Password';
                             }
 
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            dispatch(Login());
+                            dispatch(login());
                             router.push("/");
                             // setTimeout(() => {
                             // setSubmitting(false);
@@ -124,4 +120,4 @@ const login = () => {
     )
 }
 
-export default login
+export default Login

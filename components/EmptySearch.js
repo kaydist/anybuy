@@ -13,7 +13,7 @@ function EmptySearch() {
 some other great products</p>
             </p>
 
-            <Link href="/cartegory/all-products"><button className="btn">All Products</button></Link>
+            <Link href="/cartegory/all-products" passHref><button className="btn">All Products</button></Link>
         </div>
     )
 }

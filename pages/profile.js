@@ -1,11 +1,8 @@
 import React from 'react'
 import Image from "next/image"
 import { useDispatch } from "react-redux";
-import {Logout} from "../store/actions/authActions"
+import {logout} from "../store/actions/authActions"
 
-//components
-import { Formik } from "formik";
-import Modal from '../components/Modal'
 
 //svg
 import LogoutIcon from "../assets/icons/logout.svg"
@@ -14,7 +11,7 @@ import ShippingInfo from "../components/profile/ShippingInfo";
 import ProfileInfo from "../components/profile/ProfileInfo";
 
 
-function profile() {
+function Profile() {
     const dispatch = useDispatch()
 
     return (
@@ -25,7 +22,7 @@ function profile() {
                 <button 
                 className="btn bg-[#434A51] font-extrabold h-[3.5rem]"
                 onClick={()=>{
-                    dispatch(Logout())
+                    dispatch(logout())
                 }}
                 >
                     <Image src={LogoutIcon} alt="" height="100"/> Log Out
@@ -71,4 +68,4 @@ function profile() {
     )
 }
 
-export default profile
+export default Profile
