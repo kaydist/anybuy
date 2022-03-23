@@ -8,7 +8,7 @@ import { RemoveFromCart } from '../store/actions/quantityChange';
 
 //image
 import DeleteIcon from "../assets/icons/trash.svg"
-import SummaryCard from '../components/cart/summarycard'
+import SummaryCard from '../components/cart/Summarycard'
 import QuantityButton from '../components/product/QuantityButton'
 
 function Cart() {

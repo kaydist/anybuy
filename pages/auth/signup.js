@@ -7,7 +7,7 @@ import { Formik } from "formik";
 
 //icons
 import FacebookIcon from "../../assets/svgs/Facebook-icon.svg"
-import GoogleIcon from "../../assets/svgs/Google-icon.svg"
+import GoogleIcon from "../../assets/svgs/Google-Icon.svg"
 
 const signup = () => {
     return (

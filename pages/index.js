@@ -5,11 +5,9 @@ import {useRouter} from "next/router"
 //component
 import Product from '../components/product/product'
 import Banner from '../components/Banner'
-import Search from '../components/search'
+import Search from '../components/Search'
 
 
-//items
-import Earpod from "../assets/items/mHXOMt3WlF8.png"
 
 //images
 import Airtime from "../assets/svgs/airtime.svg"
