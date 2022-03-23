@@ -8,6 +8,7 @@ import { server } from "../../../Config"
 import Banner from '../../../components/Banner'
 import ProductContainer from "../../../components/product/ProductContainer"
 import ResizableSlider from "../../../components/slider"
+import EmptySearch from "../../../components/EmptySearch"
 
 //icons
 import FilterIcon from "../../../assets/icons/filter.svg"
