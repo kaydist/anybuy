@@ -13,8 +13,6 @@ import VisaLogo from "../assets/svgs/Visa Logo.svg"
 import SuccessImage from "../assets/svgs/success.svg"
 
 //image
-import Earpod from "../assets/items/mHXOMt3WlF8.png"
-import SummaryCard from '../components/cart/summarycard'
 import OrderReview from '../components/cart/OrderReview';
 
 export const SaveIcon=()=>{
