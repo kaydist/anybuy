@@ -107,7 +107,7 @@ function Item({product}) {
                     {
                         image.map((image)=>{
                             return(                                
-                                <div className="relative min-w-full h-full product-image-container" >
+                                <div key={image.id} className="relative min-w-full h-full product-image-container" >
                                     <Image src={image.picture} alt="Earpod" layout="fill" />
                                 </div>
                             )

@@ -36,7 +36,7 @@ function Profile() {
 
                 <section className="w-full lg:w-1/2">
 
-                <div class="flex w-full flex-col gap-8 items-center justify-center h-fit">
+                <div className="flex w-full flex-col gap-8 items-center justify-center h-fit">
 
                     <div className="w-full card">
                         <ShippingInfo />

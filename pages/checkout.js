@@ -18,6 +18,7 @@ import SummaryCard from '../components/cart/summarycard'
 import OrderReview from '../components/cart/OrderReview';
 
 export const SaveIcon=()=>{
+    /* eslint-disable no-alert, no-console */
     return(
         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="save" stroke="currentColor">
@@ -27,6 +28,7 @@ export const SaveIcon=()=>{
         </g>
         </svg>
     )
+    /* eslint-enable no-alert, no-console */
 }
 
 function checkout() {
@@ -267,7 +269,7 @@ function checkout() {
                                     <input
                                         type="number"
                                         name="cvv"
-                                        maxlength = "3"
+                                        maxLength = "3"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         value={values.cvv}
