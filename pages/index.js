@@ -7,8 +7,6 @@ import Product from '../components/product/product'
 import Banner from '../components/Banner'
 import Search from '../components/Search'
 
-
-
 //images
 import Airtime from "../assets/svgs/airtime.svg"
 import Data from "../assets/svgs/data.svg"
