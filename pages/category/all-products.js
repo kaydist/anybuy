@@ -42,6 +42,7 @@ function AllProductsPage({AllProducts}) {
 
     }
 
+
     useEffect(() => {
         const filteredProducts = AllProducts.filter(product => {
             if(product.sellingPrice >= thumb.lower && product.sellingPrice <= thumb.upper){
@@ -64,7 +65,7 @@ function AllProductsPage({AllProducts}) {
                     <div className="card absolute top-100 right-0 z-30 hidden" id="filter">
                         <p>Price Option</p>
                         <div className="mt-10">
-                            <ResizableSlider thumb={thumb} onclick={e =>{}}/>
+                            <ResizableSlider thumb={thumb}/>
                         </div>
                         <button className="btn float-right mt-10" onClick={filtering}>Apply</button>
                     </div>

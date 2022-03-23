@@ -13,6 +13,7 @@ import Instagram from "../assets/svgs/instagram-icon.svg"
 
 function SideNav() {
     const CartCount = useSelector((state)=> state.cart)
+    const AuthLogin = useSelector((state)=> state.auth)
     const router = useRouter()
 
     const closeSideNav=()=>{
@@ -32,7 +33,7 @@ function SideNav() {
 
 
     return (
-        <div className="bg-body-bg w-screen h-screen fixed inset-0 z-[49] px-6 py-8 flex justify-between flex-col -translate-x-[100vw]" id="SideNav">
+        <div className="bg-body-bg w-screen h-screen fixed inset-0 z-[49] px-6 pt-8 pb-16 flex justify-between flex-col -translate-x-[100vw]" id="SideNav">
             <div className="w-full flex justify-between">
                 <div onClick={closeSideNav}>
                     <CloseIcon />
@@ -42,21 +43,25 @@ function SideNav() {
                     <Image src={Logo} alt="AnyBuy" />
                 </div> 
 
-                <Link href="/cart" passHref>
-                    <div className="relative flex items-center gap-2 font-bold text-sm" onClick={closeSideNav}>
-                        <div className="h-6 w-6 flex items-center justify-center relative">
-                            <Image src={CartIcon} alt="No profile Picture" height="100"/>
-                            {
-                                
-                                CartCount.cart.length > 0
-                                ?   <div className="absolute -right-2 -top-2 text-body-bg text-xs bg-red-600 rounded-full w-4 h-4 flex justify-center">
-                                        {CartCount.cart.length} 
-                                    </div>
-                                : ""
-                            }                            
+                { AuthLogin.loggedIn === true
+
+                ?   <Link href="/cart" passHref>
+                        <div className="relative flex items-center gap-2 font-bold text-sm" onClick={closeSideNav}>
+                            <div className="h-6 w-6 flex items-center justify-center relative">
+                                <Image src={CartIcon} alt="No profile Picture" height="100"/>
+                                {
+                                    
+                                    CartCount.cart.length > 0
+                                    ?   <div className="absolute -right-2 -top-2 text-body-bg text-xs bg-red-600 rounded-full w-4 h-4 flex justify-center">
+                                            {CartCount.cart.length} 
+                                        </div>
+                                    : ""
+                                }                            
+                            </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                :   ""
+                }
             </div>
             
             <nav>
@@ -69,9 +74,12 @@ function SideNav() {
                         ['Contact', '/contact', '3'],
                     ].map(([title, url, idx]) => (
                         <li key={idx}
-                        className="nav-links relative block my-9 font-bold text-4xl before:border-b-4 before:border-b-primary before:rounded before:block before:absolute before:-bottom-1 before:content-['']  before:w-0 hover:before:w-1/2 hover:transition-width"
+                        className="nav-links block my-9 font-bold text-4xl"
                         onClick={()=>{NavChange(idx, url)}}
-                        >{title}</li>
+                        ><span
+                        className="w-fit relative before:border-b-4 before:border-b-primary before:rounded before:block before:absolute before:-bottom-1 before:content-['']  before:w-0 hover:before:w-1/2 hover:transition-width">
+                            {title}
+                        </span></li>
                     ))
                 }
                 </ul>

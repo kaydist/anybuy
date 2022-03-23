@@ -61,7 +61,7 @@ function PaginatedItems({ itemsPerPage, category }) {
       const endOffset = itemOffset + itemsPerPage;
       setCurrentItems(category.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(category.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage]);
+    }, [itemOffset, itemsPerPage, category]);
   
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {

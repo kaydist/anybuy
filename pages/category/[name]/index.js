@@ -72,7 +72,11 @@ function Categories({AllProducts}) {
                 
             </section>
 
-            <ProductContainer category={productArray} />
+            {
+                productArray.length !== 0
+                ? <ProductContainer category={productArray} />
+                : <EmptySearch />
+            } 
 
             <Banner 
                 image={EarpodBanner}

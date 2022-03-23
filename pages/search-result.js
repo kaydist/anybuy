@@ -21,10 +21,40 @@ function SearchResult() {
     const name = router.query.search
     const [searchData, setSearchData] = useState([])
 
+    const filter=()=>{        
+        document.getElementById("filter").classList.toggle("hidden")
+        document.getElementById("filter").classList.toggle("block")
+    }
+
+    const [thumb, setThumb] = useState({
+        lower: 0,
+        upper: 10000000
+    })
+
+    const filtering=()=>{
+        const LowerThumb = document.querySelector(".horizontal-slider").childNodes[3].getAttribute("aria-valueNow")
+        const UpperThumb = document.querySelector(".horizontal-slider").childNodes[4].getAttribute("aria-valueNow")
+
+        setThumb({
+            lower: Number(LowerThumb),
+            upper: Number(UpperThumb)
+        })
+
+    }
+
     useEffect(()=>{
         const data = JSON.parse(sessionStorage.getItem('search'))
-        setSearchData(data)
-    }, [])
+        const filteredProducts = data.filter(product => {
+            if(product.sellingPrice >= thumb.lower && product.sellingPrice <= thumb.upper){
+                return product
+            }
+        })
+        setSearchData(filteredProducts)
+    }, [thumb])
+
+
+
+
     return (
         <div>
             <header className="flex justify-between items-center my-8">
@@ -35,9 +65,9 @@ function SearchResult() {
                     <div className="card absolute top-100 right-0 z-30 hidden" id="filter">
                         <p>Price Option</p>
                         <div className="mt-10">
-                            <ResizableSlider/>
+                            <ResizableSlider thumb={thumb}/>
                         </div>
-                        <button className="btn float-right mt-10">Apply</button>
+                        <button className="btn float-right mt-10" onClick={filtering}>Apply</button>
                     </div>
                 </div>
                 

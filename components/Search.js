@@ -55,7 +55,7 @@ function Search() {
             </form>
       </div>
 
-      <div className="w-full lg:w-1/2 top-[40%] bg-white absolute z-20">
+      <div className="w-full lg:w-1/2 top-[55%] lg:top-[40%] bg-white absolute z-20">
             {
                 result.map((item, idx) => {
                     return (
