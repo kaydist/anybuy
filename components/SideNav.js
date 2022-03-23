@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux'
 
 import CartIcon from "../assets/icons/shopping-bag.svg"
 import CloseIcon from "../assets/icons/closeIcon"
-import Logo from "../assets/svgs/logo.svg"
+import Logo from "../assets/svgs/Logo.svg"
 import Facebook from "../assets/svgs/Facebook-mono-icon.svg"
-import Twitter from "../assets/svgs/Twitter-icon.svg"
-import Instagram from "../assets/svgs/Instagram-icon.svg"
+import Twitter from "../assets/svgs/twitter-icon.svg"
+import Instagram from "../assets/svgs/instagram-icon.svg"
 
 function SideNav() {
     const CartCount = useSelector((state)=> state.cart)

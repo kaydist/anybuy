@@ -4,8 +4,8 @@ import React from 'react'
 //logo
 import LogoWhite from "../assets/svgs/Logo-white.svg"
 import Facebook from "../assets/svgs/Facebook-mono-icon.svg"
-import Twitter from "../assets/svgs/Twitter-icon.svg"
-import Instagram from "../assets/svgs/Instagram-icon.svg"
+import Twitter from "../assets/svgs/twitter-icon.svg"
+import Instagram from "../assets/svgs/instagram-icon.svg"
 
 function AppFooter() {
     return (
