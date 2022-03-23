@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import Image from "next/image"
 import { useRouter } from "next/dist/client/router"
+import { server } from "../../../Config"
 
 
 //components
@@ -84,7 +85,7 @@ function Categories({AllProducts}) {
 
 export const getServerSideProps = async() => {
     const res = await fetch(
-        `http://localhost:3000/api/products`
+        `${server}/api/products`
     )
 
     const AllProducts = await res.json()

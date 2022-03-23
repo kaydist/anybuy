@@ -14,6 +14,12 @@ import Instagram from "../assets/svgs/instagram-icon.svg"
 function SideNav() {
     const CartCount = useSelector((state)=> state.cart)
     const router = useRouter()
+
+    const closeSideNav=()=>{
+        const sideNav = document.getElementById('SideNav')
+        sideNav.classList.toggle('-translate-x-[100vw]')
+    }
+
     const NavChange =(idx, url)=>{
        const AllLinks = document.querySelectorAll(".Nav-links")
        AllLinks.forEach(link =>{
@@ -21,11 +27,14 @@ function SideNav() {
            link.classList.add("before:w-0")
        })
        router.push(`${url}`)
+       closeSideNav()
     }
+
+
     return (
-        <div className="bg-body-bg w-screen h-screen fixed inset-0 z-[49] px-6 py-8 flex justify-between flex-col -translate-x-[100vw]">
+        <div className="bg-body-bg w-screen h-screen fixed inset-0 z-[49] px-6 py-8 flex justify-between flex-col -translate-x-[100vw]" id="SideNav">
             <div className="w-full flex justify-between">
-                <div>
+                <div onClick={closeSideNav}>
                     <CloseIcon />
                 </div>
 
@@ -34,7 +43,7 @@ function SideNav() {
                 </div> 
 
                 <Link href="/cart" passHref>
-                    <div className="relative flex items-center gap-2 font-bold text-sm">
+                    <div className="relative flex items-center gap-2 font-bold text-sm" onClick={closeSideNav}>
                         <div className="h-6 w-6 flex items-center justify-center relative">
                             <Image src={CartIcon} alt="No profile Picture" height="100"/>
                             {

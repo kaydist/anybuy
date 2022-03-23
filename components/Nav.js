@@ -39,10 +39,15 @@ function Nav() {
        router.push(`${url}`)
     }
 
+    const openSideNav=()=>{
+        const sideNav = document.getElementById('SideNav')
+        sideNav.classList.toggle('-translate-x-[100vw]')
+    }
+
     return (
         <header className="mx-auto my-0 flex justify-between items-center p-4 lg:px-44 lg:py-4 bg-white max-w-[109.2rem] z-40 fixed w-screen h-20" >
             <div className="flex gap-4 items-center">
-               <div className="inline-block lg:hidden z-50">
+               <div onClick={openSideNav} className="inline-block lg:hidden z-50">
                     <Image src={MenuBar} alt="Menu" />
                 </div>
                 <div>
@@ -71,10 +76,10 @@ function Nav() {
 
             {
                 AuthState.loggedIn === false 
-                ? <div className="hidden lg:inline-block">
+                ? <div>
                     <ul>
                         <Link href="/auth/login" passHref>
-                            <li className="relative inline-block mx-9 font-bold text-sm">Sign In</li>
+                            <li className="relative hidden lg:inline-block mx-9 font-bold text-sm">Sign In</li>
                         </Link>
 
                         <Link href="/auth/signup" passHref>

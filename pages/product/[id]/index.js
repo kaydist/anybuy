@@ -2,8 +2,7 @@ import React, {useState, useRef} from 'react'
 import Image from 'next/image'
 import { useSelector, useDispatch } from 'react-redux'
 import { AddToCart } from '../../../store/actions/quantityChange';
-import {gsap} from 'gsap';
-import styled from 'styled-components';
+import { server } from '../../../Config';
 
 //componrnets
 import ProductIndex from '../../../components/product/ProductIndex'
@@ -12,6 +11,8 @@ import Modal from '../../../components/Modal'
 import ReactStars from 'react-rating-stars-component';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import {gsap} from 'gsap';
+import styled from 'styled-components';
 
 
 
@@ -342,7 +343,7 @@ function Item({product}) {
 }
 
 export const getServerSideProps = async(context) =>{
-    const res = await fetch (`http://localhost:3000/api/products/${context.params.id}`)
+    const res = await fetch (`${server}/api/products/${context.params.id}`)
 
     const product = await res.json()
 

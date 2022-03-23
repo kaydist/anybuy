@@ -47,7 +47,7 @@ const Layout=({children})=>{
         <Nav />
         <SideNav />
 
-        <main className="bg-body-bg min-h-[90vh] relative h-fit lg:min-h-[80vh] md:px-12 lg:px-40 px-4 pb-4 pt-24 z-10 lg:pb-32">
+        <main className="bg-body-bg min-h-[100vh] relative lg:min-h-[80vh] md:px-12 lg:px-40 px-4 pb-4 pt-24 z-10 lg:pb-32">
             {children}
         </main>
 

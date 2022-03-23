@@ -14,6 +14,7 @@ import FilterIcon from "../../assets/icons/filter.svg"
 //images
 import EarpodBanner from "../../assets/images/earpod.png"
 import Notification from "../../components/Notification"
+import { server } from "../../Config"
 
 function AllProductsPage({AllProducts}) {
     const router = useRouter()
@@ -85,7 +86,7 @@ function AllProductsPage({AllProducts}) {
 
 export const getServerSideProps = async() => {
     const res = await fetch(
-        `http://localhost:3000/api/products`
+        `${server}/api/products`
     )
 
     const AllProducts = await res.json()
