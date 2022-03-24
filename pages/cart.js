@@ -18,7 +18,7 @@ function Cart() {
     const dispatch = useDispatch()
     return (
         <div>
-            <h2 className="text-4xl font-extrabold mt-6 ">Cart</h2>
+            <h2 className="page_heading">Cart</h2>
             
             {
                         currentScreenWidth === "isNotMobile"

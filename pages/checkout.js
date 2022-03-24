@@ -53,7 +53,7 @@ function checkout() {
     return (
         <>
         <div>
-            <h2 className="text-4xl font-extrabold">Checkout</h2>
+            <h2 className="page_heading">Checkout</h2>
             <div className="flex flex-wrap gap-8 lg:gap-0 justify-between mt-6">
 
                 <section className="w-full lg:w-[60%]">

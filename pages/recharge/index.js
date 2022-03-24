@@ -62,7 +62,6 @@ function BuyData() {
     const handleRemoveClick = (idx) => {
         // const list = [...inputList];
         let updatedList = inputList.filter((item, index) => idx !== index)
-        console.log(updatedList)
         setInputList(updatedList);     
     };
 
@@ -75,7 +74,7 @@ function BuyData() {
 
     return (
         <div>        
-        <h2 className="text-4xl font-extrabold">Recharge</h2>
+        <h2 className="page_heading">Recharge</h2>
 
        {
            inputList.map((form, idx)=>{

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import Image from "next/image"
 import Link from "next/link"
 import {useRouter} from "next/router"
 import { useSelector } from "react-redux"
+import {gsap} from 'gsap'
 
 //styles
 
@@ -39,10 +40,19 @@ function Nav() {
        router.push(`${url}`)
     }
 
+    const tIn = useRef(null)
+    const sideNav = document.getElementById('SideNav')    
+    const q = gsap.utils.selector(sideNav)
+
     const openSideNav=()=>{
-        const sideNav = document.getElementById('SideNav')
-        sideNav.classList.toggle('-translate-x-[100vw]')
+
+        tIn.current = gsap.timeline()
+            .fromTo(sideNav, {translateX: "-100vw"}, {translateX: "0",  duration: 2, ease: "expo.out"})
+            .fromTo(q(".nav-links-text"), {y: 200}, {y: 0, stagger: 0.25, duration: 1}, "<")
     }
+
+    
+
 
     return (
         <header className="mx-auto my-0 flex justify-between items-center p-4 lg:px-44 lg:py-4 bg-white max-w-[109.2rem] z-40 fixed w-screen h-20" >

@@ -65,12 +65,8 @@ export const CloseIcon=()=>{
 
 
 function ProfileInfo() {
-    const EditProfileModal = useRef(null)
     const [openModal, setOpenModal] = useState(false)
 
-    useEffect(() => {
-        console.log(openModal)
-    }, [openModal])
     return (
         <>            
             <div className="w-full card">
@@ -93,7 +89,7 @@ function ProfileInfo() {
                 </div>
             </div>
 
-            <Modal ref={EditProfileModal} state={openModal} close={()=>setOpenModal(!openModal)}>
+            <Modal state={openModal} close={()=>setOpenModal(!openModal)}>
                 <div className="card w-[92%] md:w-[32rem] mx-auto">
 
                 <div className="w-full font-bold text-2xl mb-8 flex justify-between">

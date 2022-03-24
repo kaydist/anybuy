@@ -39,12 +39,7 @@ export const CloseIcon=()=>{
 }
 
 function ShippingInfo() {
-    const EditShippingModal = useRef(true)
     const [openModal, setOpenModal] = useState(false)
-
-    // useEffect(() => {
-    //     console.log(openModal)
-    // }, [openModal])
 
     const onClickOut=(e)=>{
         const element = e.target
@@ -53,12 +48,7 @@ function ShippingInfo() {
         //     e.stopPropagation();
         //     setOpenModal(!openModal)
         // }
-        if (EditShippingModal.current && !document.querySelector(".modal").contains(element)){
-            console.log(document.querySelector(".modal"))
-        }
-     
-        console.log(EditShippingModal.current)
-        console.log(!document.querySelector(".modal").contains(element))
+    
     }
 
     return (
@@ -76,7 +66,7 @@ function ShippingInfo() {
                 <p>2118 Thornridge Cir. Syracuse, Connecticut 35624</p>
             </div>
 
-            <Modal ref={EditShippingModal} state={openModal}>
+            <Modal state={openModal}>
                 <div className="card w-[92%] md:w-[32rem] mx-auto">
 
                 <div className="w-full font-bold text-2xl mb-8 flex justify-between">

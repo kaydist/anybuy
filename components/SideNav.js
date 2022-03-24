@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
 import Image from "next/image"
 import Link from "next/link"
 import {useRouter} from "next/router"
 import { useSelector } from 'react-redux'
+import {gsap} from 'gsap'
 
 import CartIcon from "../assets/icons/shopping-bag.svg"
 import CloseIcon from "../assets/icons/closeIcon"
@@ -16,10 +17,6 @@ function SideNav() {
     const AuthLogin = useSelector((state)=> state.auth)
     const router = useRouter()
 
-    const closeSideNav=()=>{
-        const sideNav = document.getElementById('SideNav')
-        sideNav.classList.toggle('-translate-x-[100vw]')
-    }
 
     const NavChange =(idx, url)=>{
        const AllLinks = document.querySelectorAll(".Nav-links")
@@ -31,6 +28,15 @@ function SideNav() {
        closeSideNav()
     }
 
+    const tOut = useRef(null)
+    const sideNav = document.getElementById('SideNav')    
+    const q = gsap.utils.selector(sideNav)
+
+    const closeSideNav=()=>{
+        tOut.current = gsap.timeline()
+        .to(q(".nav-links-text"), {y: 200, stagger: 0.25, duration: 1})
+        .to(sideNav, {translateX: "-100vw",  duration: 2, ease: "expo.out"}, "<")
+    }
 
     return (
         <div className="bg-body-bg w-screen h-screen fixed inset-0 z-[49] px-6 pt-8 pb-16 flex justify-between flex-col -translate-x-[100vw]" id="SideNav">
@@ -74,10 +80,10 @@ function SideNav() {
                         ['Contact', '/contact', '3'],
                     ].map(([title, url, idx]) => (
                         <li key={idx}
-                        className="nav-links block my-9 font-bold text-4xl"
+                        className="nav-links block my-9 font-bold text-4xl overflow-hidden"
                         onClick={()=>{NavChange(idx, url)}}
                         ><span
-                        className="w-fit relative before:border-b-4 before:border-b-primary before:rounded before:block before:absolute before:-bottom-1 before:content-['']  before:w-0 hover:before:w-1/2 hover:transition-width">
+                        className="w-fit nav-links-text block relative before:border-b-4 before:border-b-primary before:rounded before:block before:absolute before:-bottom-1 before:content-['']  before:w-0 hover:before:w-1/2 hover:transition-width">
                             {title}
                         </span></li>
                     ))

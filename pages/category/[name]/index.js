@@ -58,7 +58,7 @@ function Categories({AllProducts}) {
             <Notification message="Filters applied"/>
 
             <section className="flex justify-between items-center my-8">
-                <p className="text-3xl font-extrabold">{router.query.title}</p>
+                <p className="page_heading">{router.query.title}</p>
                 <div className="relative">
                     <button className="outlined_btn flex items-center gap-2 rounded-lg px-2" onClick={()=> {filter()}}><Image src={FilterIcon} alt="" height="15" /> Filter</button>
 

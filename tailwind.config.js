@@ -36,7 +36,7 @@ module.exports = {
             paddingLeft: theme('spacing.6'),
             paddingRight: theme('spacing.6'),
           },
-      
+                
           '.input': {
             marginTop: theme('spacing.2'),
             borderWidth: theme('borderWidth.2'),

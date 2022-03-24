@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useRef, ForwardedRef } from 'react'
+import { gsap } from 'gsap';
 
 //component
 import Product from './product'
@@ -6,9 +7,18 @@ import ReactPaginate from "react-paginate"
 import styled from 'styled-components';
 
 
-function Items({currentItems}) {
+function Items({currentItems, pageCount}) {
+  const ProductCardContainer = useRef(null)
+  const q = gsap.utils.selector(ProductCardContainer);
+  const tl = useRef(null)
+
+  useEffect(() => {
+    tl.current = gsap.timeline()
+      .fromTo(q(".card"), {y: 300, opacity: 0}, {y: 0, opacity: 1, stagger:0.15 ,duration: 1})
+  }, [pageCount])
+
     return(
-        <>
+        <section className="grid grid-flow-row lg:grid-cols-4 grid-cols-auto-fill gap-10 w-full overflow-hidden" ref={ProductCardContainer}>
             {   
                 currentItems.map((product, idx) => {
                     return(    
@@ -19,7 +29,7 @@ function Items({currentItems}) {
                     )
                 })
             }
-        </>
+        </section>
     )
 }
 
@@ -71,10 +81,9 @@ function PaginatedItems({ itemsPerPage, category }) {
     };
   
     return (
-      <>
-        <section className="grid grid-flow-row lg:grid-cols-4 grid-cols-auto-fill gap-10 w-full overflow-hidden">            
-            <Items currentItems={currentItems} />               
-        </section>
+      <>  
+        
+        <Items currentItems={currentItems} pageCount={currentPage} /> 
 
         <StyledLink>
             <ReactPaginate
@@ -96,7 +105,7 @@ function PaginatedItems({ itemsPerPage, category }) {
   function ProductContainer({category}) {
     return (
         <>
-          <PaginatedItems category={category} itemsPerPage={12} />
+          <PaginatedItems category={category} itemsPerPage={5} />
         </>
     )
 }

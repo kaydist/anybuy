@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useRef, useState} from 'react'
+import { gsap } from 'gsap';
 import { Formik } from "formik";
 
 export const SaveIcon=()=>{
@@ -13,14 +14,39 @@ export const SaveIcon=()=>{
     )
 }
 
+
+
+
 function ResetPassword() {
+    const [isOpen, setisOpen] = useState(false)
+
+    const ResetPasswordButton = useRef(null)
+    const q = gsap.utils.selector(ResetPasswordButton)
+    const tIn = useRef()
+
+    const openDropdown=()=>{        
+        setisOpen(true)
+        tIn.current = gsap.timeline()
+        .fromTo(ResetPasswordButton.current, {height: "0%", opacity: 0}, {height: "100%", opacity: 1, duration: 1, ease: "expo.out"})
+        .fromTo(q("form"), {height: "0%", opacity: 0}, {height: "100%", opacity: 1, duration: 1, ease: "expo.out"}, "<")
+    }
+
+    const closeDropdown=()=>{
+        tIn.current = gsap.timeline()
+        .to(ResetPasswordButton.current, {height: "0%", opacity: 0, duration: 1, ease: "expo.out"}, "<20%")
+        setisOpen(false)
+    }
+
     return (
         <>
-            <div className="w-full card text-primary font-bold text-2xl text-center">
+            <button 
+            className="w-full card text-primary font-bold text-2xl text-center"
+            onClick={ isOpen === false ? openDropdown : closeDropdown}>
                 Reset Password
-            </div>
+            </button>
 
-            <div className="card w-full mt-6 px-10">
+            <div className="card w-full mt-6 px-10 opacity-0 reset-password-dropdown" 
+            ref={ResetPasswordButton}>
             <h2 className="text-xl font-bold mb-6">Reset Password</h2>
             <Formik
                 initialValues={{ email: '', password: '' }}
@@ -52,7 +78,7 @@ function ResetPassword() {
                     isSubmitting,
                     /* and other goodies */
                 }) => (
-                    <form onSubmit={handleSubmit} className="flex flex-col">
+                    <form onSubmit={handleSubmit} className="flex-col flex">
 
                     <div className="flex mb-4 flex-col">
                     <p className="font-bold">Password</p>

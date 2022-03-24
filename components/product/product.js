@@ -22,7 +22,7 @@ function Product({product}) {
     
     return (
         <>
-        <div className="card p-4 min-w-[10rem] h-60 lg:w-60 lg:h-80 relative flex justify-between flex-col">
+        <div className="card p-4 min-w-[10rem] h-60 lg:w-60 lg:h-80 relative flex justify-between flex-col" id="ProductCard">
             <div className="flex justify-between">
                 <div><p className="rounded-lg p-1 text-sm bg-notification-bg">{discount}</p></div>
                 <div 

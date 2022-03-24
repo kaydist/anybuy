@@ -17,10 +17,10 @@ function Profile() {
     return (
         <>
         <div>
-            <div className="w-full flex justify-between items-center">
-                <h2 className="text-4xl font-extrabold">Profile</h2>
+            <div className="w-full my-6 flex justify-between items-center">
+                <h2 className="page_heading">Profile</h2>
                 <button 
-                className="btn bg-[#434A51] font-extrabold h-[3.5rem]"
+                className="btn bg-[#434A51] font-extrabold h-[3rem]"
                 onClick={()=>{
                     dispatch(logout())
                 }}

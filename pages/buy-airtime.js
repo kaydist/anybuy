@@ -13,7 +13,7 @@ import GloLogo from "../assets/svgs/Globacom Limited Logo.svg"
 function BuyAirtime() {
     return (
         <div className="flex flex-col gap-8 lg:max-w-2xl justify-between">
-            <h2 className="text-4xl font-extrabold">Airtime Purchase</h2>
+            <h2 className="page_heading">Airtime Purchase</h2>
             <p className="text-lg font-extrabold">Choose Mobile Network</p>
 
             <div className="flex flex-row items-center sm:justify-between gap-4 overflow-x-auto overflow-y-hidden w-full sm:w-full flex-nowrap lg:px-0">
