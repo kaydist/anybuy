@@ -65,7 +65,7 @@ const Layout=({children})=>{
             @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&display=swap');
             {/* eslint-enable no-alert, no-console */}
         </style>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
         </Head>
 
         <Nav />
