@@ -1,6 +1,7 @@
 import React, {useRef, useState} from 'react'
 import { gsap } from 'gsap';
 import { Formik } from "formik";
+import { resetPassword } from '../../Config/firebase';
 
 export const SaveIcon=()=>{
     return(
@@ -49,23 +50,22 @@ function ResetPassword() {
             ref={ResetPasswordButton}>
             <h2 className="text-xl font-bold mb-6">Reset Password</h2>
             <Formik
-                initialValues={{ email: '', password: '' }}
+                initialValues={{ password: '', confirmPassword: '' }}
                 validate={values => {
                     const errors = {};
-                    if (!values.email) {
-                    errors.email = 'Required';
-                    } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                    ) {
-                    errors.email = 'Invalid email address';
+                    if (!values.password) {
+                    errors.password = 'Required';
+                    } 
+                    if (!values.confirmPassword){
+                        errors.confirmPassword = 'Required';
+                    } else if (values.password !== values.confirmPassword ){
+                        errors.confirmPassword = 'Passwords Mismatch'
                     }
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                    }, 400);
+                    let newPassword = values
+                    resetPassword(newPassword)
                 }}
                 >
                 {({
@@ -97,14 +97,14 @@ function ResetPassword() {
                         <p className="font-bold"> Confrim Password</p>
                         <input
                             type="password"
-                            name="password"
+                            name="confirmPassword"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.password}
+                            value={values.confirmPassword}
                             placeholder="1234"
                             className="input"
                         />
-                        <p className="text-red-600">{errors.password && touched.password && errors.password}</p>
+                        <p className="text-red-600">{errors.confirmPassword && touched.confirmPassword && errors.confirmPassword}</p>
                     </div>
                     
                     <div className="w-full flex justify-end">

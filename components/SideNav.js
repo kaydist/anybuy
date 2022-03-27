@@ -49,7 +49,7 @@ function SideNav() {
                     <Image src={Logo} alt="AnyBuy" />
                 </div> 
 
-                { AuthLogin.loggedIn === true
+                { AuthLogin.currentUser !== null
 
                 ?   <Link href="/cart" passHref>
                         <div className="relative flex items-center gap-2 font-bold text-sm" onClick={closeSideNav}>

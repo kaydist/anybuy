@@ -12,6 +12,9 @@ import FacebookIcon from "../../assets/svgs/Facebook-icon.svg"
 import GoogleIcon from "../../assets/svgs/Google-Icon.svg"
 import { login } from "../../store/actions/authActions";
 
+//firebase
+import { signInWithEmail, SignInWithGoogle } from '../../Config/firebase';
+
 const Login = () => {
     const dispatch = useDispatch()
     const router = useRouter()
@@ -24,7 +27,9 @@ const Login = () => {
                     <p>Welcome back</p>
 
                     <div className="flex gap-2 my-8">
-                        <div className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2">
+                        <div 
+                        className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2" onClick={SignInWithGoogle}
+                        >
                             <Image src={GoogleIcon} alt="" height="25" /> Google 
                         </div>
                         <div className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2">
@@ -51,11 +56,11 @@ const Login = () => {
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            dispatch(login());
-                            router.push("/");
-                            // setTimeout(() => {
-                            // setSubmitting(false);
-                            // }, 400);
+                            const email = values.email
+                            const password = values.password
+                            signInWithEmail(email, password)
+                            // dispatch(login());
+                            // router.push("/");
                         }}
                         >
                         {({

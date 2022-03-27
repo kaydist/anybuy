@@ -9,6 +9,9 @@ import { Formik } from "formik";
 import FacebookIcon from "../../assets/svgs/Facebook-icon.svg"
 import GoogleIcon from "../../assets/svgs/Google-Icon.svg"
 
+//firebase
+import { AddToStore, createUserWithEmail } from '../../Config/firebase';
+
 const signup = () => {
     return (
         <section className="flex justify-center items-center w-full h-fit min-h-[80vh]">
@@ -37,13 +40,15 @@ const signup = () => {
                             ) {
                             errors.email = 'Invalid email address';
                             }
+                            if (!values.password) {
+                                errors.password = 'Required';
+                            }
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                            setSubmitting(false);
-                            }, 400);
+                            const email = values.email
+                            const password = values.password
+                            createUserWithEmail(email, password)
                         }}
                         >
                         {({

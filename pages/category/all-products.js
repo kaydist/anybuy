@@ -27,8 +27,8 @@ function AllProductsPage({AllProducts}) {
     const [productArray, setProductArray] = useState(AllProducts)
 
     const [thumb, setThumb] = useState({
-        lower: 0,
-        upper: 10000000
+        lower: 50000,
+        upper: 100000
     })
 
     const filtering=()=>{

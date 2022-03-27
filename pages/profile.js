@@ -9,6 +9,7 @@ import LogoutIcon from "../assets/icons/logout.svg"
 import ResetPassword from "../components/profile/ResetPassword";
 import ShippingInfo from "../components/profile/ShippingInfo";
 import ProfileInfo from "../components/profile/ProfileInfo";
+import { signingOut } from '../Config/firebase';
 
 
 function Profile() {
@@ -22,6 +23,7 @@ function Profile() {
                 <button 
                 className="btn bg-[#434A51] font-extrabold h-[3rem]"
                 onClick={()=>{
+                    signingOut()
                     dispatch(logout())
                 }}
                 >

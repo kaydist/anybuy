@@ -1,6 +1,8 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useEffect} from "react";
 import { Formik } from "formik";
 import Modal from '../Modal'
+import { AddToShippingInfo, getShippingInfo } from "../../Config/firebase";
+import { useSelector } from "react-redux";
 
 export const EditIcon=()=>{
     return(
@@ -40,16 +42,8 @@ export const CloseIcon=()=>{
 
 function ShippingInfo() {
     const [openModal, setOpenModal] = useState(false)
+    const currentUser = useSelector((state)=> state.auth)
 
-    const onClickOut=(e)=>{
-        const element = e.target
-        // if (EditShippingModal.current && !EditShippingModal.current.contains(element)){
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //     setOpenModal(!openModal)
-        // }
-    
-    }
 
     return (
         <>
@@ -60,10 +54,16 @@ function ShippingInfo() {
                 </span>
             </div>
 
-            <div className="mt-4 mb-8 text-left">
-                <p>Adufe Robiu</p>
-                <p>+234 7000500234</p>
-                <p>2118 Thornridge Cir. Syracuse, Connecticut 35624</p>
+            <div className="mt-4 mb-8 text-left">                
+                {
+                        currentUser.currentUser?.shippingInfo === null
+                    ?   <p>No existing shipping information.<br /> Please create one</p>
+                    :   <span>
+                        <p>{currentUser.currentUser?.shippingInfo?.firstName} {currentUser.currentUser?.shippingInfo?.lastName}</p>
+                        <p>{currentUser.currentUser?.shippingInfo?.phoneNumber}</p>
+                        <p>{currentUser.currentUser?.shippingInfo?.address}</p>
+                        </span>
+                }
             </div>
 
             <Modal state={openModal}>
@@ -75,24 +75,33 @@ function ShippingInfo() {
                         <CloseIcon />
                     </span>
                 </div> 
+
                 <Formik
-                initialValues={{ email: '', password: '' }}
+                initialValues={{
+                    firstName: currentUser.currentUser?.shippingInfo?.firstName,
+                    lastName: currentUser.currentUser?.shippingInfo?.lastName,
+                    phoneNumber: currentUser.currentUser?.shippingInfo?.phoneNumber,
+                    address: currentUser.currentUser?.shippingInfo?.address
+                }}
                 validate={values => {
                     const errors = {};
-                    if (!values.email) {
-                    errors.email = 'Required';
-                    } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                    ) {
-                    errors.email = 'Invalid email address';
-                    }
+                    if (!values.firstName) {
+                    errors.firstName = 'Required';
+                    } 
+                    if (!values.lastName) {
+                    errors.lastName = 'Required';
+                    } 
+                    if (!values.phoneNumber) {
+                    errors.phoneNumber = 'Required';
+                    } 
+                    if (!values.address) {
+                    errors.address = 'Required';
+                    } 
                     return errors;
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                    }, 400);
+                onSubmit={(values, { setSubmitting }) => { 
+                    let userId = currentUser.currentUser.uid
+                    AddToShippingInfo(values, userId)
                 }}
                 >
                 {({
@@ -112,40 +121,40 @@ function ShippingInfo() {
                             <label className="font-bold">First Name</label>
                             <input
                                 type="text"
-                                name="first_name"
+                                name="firstName"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.first_name}
+                                value={values.firstName}
                                 placeholder="John"
                                 className="input"
                             />
-                            <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
+                            <p className="text-red-600">{errors.firstName && touched.firstName && errors.firstName}</p>
                         </div>
                         <div className="flex mb-4 flex-col w-full">
                             <label className="font-bold">Last Name</label>
                             <input
                                 type="text"
-                                name="last_name"
+                                name="lastName"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.last_name}
+                                value={values.lastName}
                                 placeholder="Doe"
                                 className="input"
                             />
-                            <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
+                           <p className="text-red-600">{errors.lastName && touched.lastName && errors.lastName}</p>
                         </div>                        
                         <div className="flex mb-4 flex-col w-full">
                             <label className="font-bold">Phone Number</label>
                             <input
                                 type="tel"
-                                name="telephone"
+                                name="phoneNumber"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.last_name}
+                                value={values.phoneNumber}
                                 placeholder="+234 000 0000"
                                 className="input"
                             />
-                            <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
+                            <p className="text-red-600">{errors.phoneNumber && touched.phoneNumber && errors.phoneNumber}</p>
                         </div>
                         <div className="flex mb-4 flex-col w-full">
                             <label className="font-bold">Address</label>
@@ -158,7 +167,7 @@ function ShippingInfo() {
                                 placeholder="Enter your shipping Adderess"
                                 className="input h-[6rem] resize-none"
                             />
-                            <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
+                            <p className="text-red-600">{errors.address && touched.address && errors.address}</p>
                         </div>
                     </div>
                     

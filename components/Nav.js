@@ -85,7 +85,7 @@ function Nav() {
             </nav>
 
             {
-                AuthState.loggedIn === false 
+                AuthState.currentUser === null
                 ? <div>
                     <ul>
                         <Link href="/auth/login" passHref>

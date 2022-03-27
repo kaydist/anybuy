@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 
 //components
 import Modal from "../Modal";
@@ -8,6 +9,7 @@ import { Formik } from "formik";
 
 //svgs
 import EmptyUserImage from "../../assets/icons/user.svg"
+import { AddToProfileInfo } from '../../Config/firebase';
 
 export const EditIcon=()=>{
     return(
@@ -66,6 +68,7 @@ export const CloseIcon=()=>{
 
 function ProfileInfo() {
     const [openModal, setOpenModal] = useState(false)
+    const currentUser = useSelector((state)=> state.auth)
 
     return (
         <>            
@@ -78,13 +81,18 @@ function ProfileInfo() {
                 </div>
 
                 <div className="flex flex-col gap-6 my-4 items-center justify-center">
-                    <div className="rounded-full w-20 h-20 bg-muted flex items-center justify-center p-1">
-                        <Image src={EmptyUserImage} alt="No profile Picture" height="100"/>
+                    <div className="rounded-full relative w-20 h-20 bg-muted flex items-center justify-center p-1">
+                        {/* {
+                            currentUser.currentUser?.photoURL !== null
+                            ?   <Image src={currentUser.currentUser?.photoURL} alt="No profile Picture" layout="fill"/>
+                            :   <Image src={EmptyUserImage} alt="No profile Picture" height="100"/>
+                        } */}
                     </div>
 
                     <div className="text-center">
-                        <p className="text-xl font-bold">Adufe Robiu</p>
-                        <p className="text-muted">aduferobiu@email.com</p>
+                        <p className="text-xl font-bold">{currentUser.currentUser?.displayName}</p>
+                        <p className="text-muted">{currentUser.currentUser?.email}</p>
+                        <p className="text-muted">{currentUser.currentUser?.phoneNumber}</p>
                     </div>
                 </div>
             </div>
@@ -99,23 +107,19 @@ function ProfileInfo() {
                     </span>
                 </div> 
                 <Formik
-                initialValues={{ email: '', password: '' }}
+                initialValues={{ 
+                    displayName: currentUser?.currentUser?.displayName,
+                    email: currentUser?.currentUser?.email,
+                    phoneNumber: currentUser?.currentUser?.phoneNumber,
+                    photoURL: currentUser?.currentUser?.photoURL
+                }}
                 validate={values => {
                     const errors = {};
-                    if (!values.email) {
-                    errors.email = 'Required';
-                    } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                    ) {
-                    errors.email = 'Invalid email address';
-                    }
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                    }, 400);
+                    let userId = currentUser.currentUser.uid
+                    AddToProfileInfo(values, userId)
                 }}
                 >
                 {({
@@ -135,27 +139,38 @@ function ProfileInfo() {
                             <label className="font-bold">Username</label>
                             <input
                                 type="text"
-                                name="user_name"
+                                name="displayName"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.user_name}
-                                placeholder="User Name"
+                                value={values.displayName}
+                                placeholder="Display Name"
                                 className="input"
-                            />
-                            <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
+                            />                            
                         </div>
                         <div className="flex mb-4 flex-col w-full">
                             <label className="font-bold">Email</label>
                             <input
                                 type="email"
-                                name="email_name"
+                                name="email"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.email_name}
+                                value={values.email}
                                 placeholder="johndoe@email.com"
                                 className="input"
                             />
                             <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
+                        </div>
+                        <div className="flex mb-4 flex-col w-full">
+                            <label className="font-bold">Phone Number</label>
+                            <input
+                                type="tel"
+                                name="phoneNumber"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.phoneNumber}
+                                placeholder="+234 000 0000"
+                                className="input"
+                            />
                         </div>
                         <div className="flex mb-4 flex-col w-full relative">
                             <label className="font-bold">Upload Profile Picture</label>
@@ -164,14 +179,13 @@ function ProfileInfo() {
                             </div>
                             <input
                                 type="file"
-                                name="profilepic"
+                                name="profilePIC"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.profilepic}
-                                placeholder="johndoe@email.com"
+                                value={values.profilePIC}
+                                placeholder="select a picture"
                                 className="h-20 z-[51] opacity-0"
                             />
-                            <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
                         </div>
                     </div>
                     

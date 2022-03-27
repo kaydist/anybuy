@@ -1,20 +1,19 @@
+
 let initialState = {
-    loggedIn : false
+    currentUser: null
 }
-
-const Auth= (state=initialState, action) =>{
-
+const Auth= (state=initialState, action) =>{    
     switch(action.type){
-        case "login":
+        case "login":     
             return {
                 ...state,
-                loggedIn: true
+                currentUser: action.payload
             };
         
         case "logout":
             return {
                 ...state,
-                loggedIn: false
+                currentUser: null
             };
 
         default:

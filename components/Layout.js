@@ -6,16 +6,21 @@ import AppFooter from './AppFooter'
 
 //React Imports
 import { useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {isMobile} from '../store/actions/screenSizeAction'
 
 import AuthFooter from "./AuthFooter"
 import Nav from "./Nav"
 import SideNav from "./SideNav"
 
+//firebase
+import { auth, CheckFirebase, db } from "../Config/firebase"
+import { getDoc, doc, onSnapshot } from 'firebase/firestore'
+import { login } from '../store/actions/authActions'
 
 
 const Layout=({children})=>{
+    const AuthState = useSelector((state)=> state.auth)
     const dispatch = useDispatch()
     const router = useRouter()
     const [currentScreenWidth, setcurrentScreenWidth] = useState(0)
@@ -30,6 +35,25 @@ const Layout=({children})=>{
         width() 
         dispatch(isMobile(currentScreenWidth))       
     }, [currentScreenWidth])
+
+    useEffect(()=>{        
+
+        auth.onAuthStateChanged(async(user) => {
+            if (user === null) return;
+            const userId = user.uid  
+            const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc)=>{
+                if (doc.data() !== null ) {                
+                    dispatch(login(doc.data()))
+                    console.log("Document data:", doc.data());
+                } else {
+                console.log("No such document!");
+                } 
+            })
+               
+        console.log(userId)
+        })
+
+    }, [])
 
     return(
         <div>
