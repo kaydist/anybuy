@@ -39,14 +39,16 @@ const cart = (state=initiaState, action) =>{
             }
             
 
-        case "RemoveFromCart":          
+        case "RemoveFromCart": 
+            let newTotalCartPrice = state.totalCartPrice - getItem.totalItemPrice 
+            let newTotalCartQuantity = state.totalCartQuantity - getItem.quantity
             let updatedState = state.cart.filter(item => item.id !== action.payload.id)
             
             return {
                 ...state,
-                cart: updatedState,
-                totalCartPrice: state.totalCartPrice - getItem.totalItemPrice,
-                totalCartQuantity: state.totalCartQuantity - getItem.quantity,
+                totalCartPrice: newTotalCartPrice,
+                totalCartQuantity: newTotalCartQuantity,                
+                cart: updatedState
             };
         
         case "increaseQuantity":
