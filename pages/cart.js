@@ -12,7 +12,7 @@ import SummaryCard from '../components/cart/SummaryCard'
 import QuantityButton from '../components/product/QuantityButton'
 
 //HOC
-import withAuth from "./withAuth"
+import withAuth from "../routes/withAuth"
 
 function Cart() {
     let currentScreenWidth = useSelector((state)=> state.screenSize);
