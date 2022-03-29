@@ -37,7 +37,7 @@ function AllProductsPage({AllProducts}) {
 
         setThumb({
             lower: Number(LowerThumb),
-            upper: Number(UpperThumb)
+            upper: Number(UpperThumb),
         })
 
     }

@@ -11,6 +11,9 @@ import DeleteIcon from "../assets/icons/trash.svg"
 import SummaryCard from '../components/cart/SummaryCard'
 import QuantityButton from '../components/product/QuantityButton'
 
+//HOC
+import withAuth from "./withAuth"
+
 function Cart() {
     let currentScreenWidth = useSelector((state)=> state.screenSize);
     const TotalState = useSelector((state) => state.cart)
@@ -154,4 +157,4 @@ function Cart() {
     )
 }
 
-export default Cart
+export default withAuth(Cart)

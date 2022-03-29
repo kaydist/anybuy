@@ -9,6 +9,7 @@ import configureStore from  '../store/store'
 const {store, persistor} = configureStore()
 
 function MyApp({ Component, pageProps }) {
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

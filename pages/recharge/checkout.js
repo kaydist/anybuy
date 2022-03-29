@@ -27,7 +27,7 @@ export const SaveIcon=()=>{
     )
 }
 
-function checkout() {
+function RechargeCheckout() {
 
     const handleAccordion=(x)=>{
 
@@ -220,4 +220,4 @@ function checkout() {
     )
 }
 
-export default checkout
+export default RechargeCheckout

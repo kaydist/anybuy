@@ -4,24 +4,30 @@ import Link from "next/link"
 
 //components
 import { Formik } from "formik";
+import PopNotification from '../../components/PopNotification';
 
 //icons
 import FacebookIcon from "../../assets/svgs/Facebook-icon.svg"
 import GoogleIcon from "../../assets/svgs/Google-Icon.svg"
 
 //firebase
-import { AddToStore, createUserWithEmail } from '../../Config/firebase';
+import { createUserWithEmail, SignInWithGoogle } from '../../Config/firebase';
 
 const signup = () => {
     return (
         <section className="flex justify-center items-center w-full h-fit min-h-[80vh]">
-            <div className="card w-full lg:w-fit lg:px-14 lg:py-5">
+            <div className="card w-full lg:w-fit lg:px-14 lg:py-5 lg:mt-8 relative">
+            <PopNotification message="Account Already Exists"/>
+
                 <div className="lg:w-[23rem] w-full">
                     <h1 className="font-black text-3xl">Create Account</h1>
                     <p>Welcome to Anypay</p>
 
                     <div className="flex gap-2 my-8">
-                        <div className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2">
+                        <div 
+                        className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2"
+                        onClick={SignInWithGoogle}
+                        >
                             <Image src={GoogleIcon} alt="" height="25" /> Google 
                         </div>
                         <div className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2">
@@ -90,7 +96,7 @@ const signup = () => {
                                 <p className="text-red-600">{errors.password && touched.password && errors.password}</p>
                             </div>
                             
-                            <button type="submit" className="btn mt-8" disabled={isSubmitting}>
+                            <button type="submit" className="btn mt-8">
                                 Continue
                             </button>
                             </form>

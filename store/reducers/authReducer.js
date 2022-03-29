@@ -2,6 +2,7 @@
 let initialState = {
     currentUser: null
 }
+
 const Auth= (state=initialState, action) =>{    
     switch(action.type){
         case "login":     

@@ -14,6 +14,7 @@ import { login } from "../../store/actions/authActions";
 
 //firebase
 import { signInWithEmail, SignInWithGoogle } from '../../Config/firebase';
+import PopNotification from '../../components/PopNotification';
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -21,7 +22,9 @@ const Login = () => {
     
     return (
         <section className="flex justify-center items-center w-full h-fit min-h-[80vh]">
-            <div className="card w-full lg:w-fit lg:px-14 lg:py-5">
+            <div className="card w-full lg:w-fit lg:px-14 lg:py-5 lg:mt-8 relative"> 
+                <PopNotification message="Your Email or Password is incorrect"/>
+
                 <div className="lg:w-[23rem] w-full">
                     <h1 className="font-black text-3xl">Sign In</h1>
                     <p>Welcome back</p>
@@ -59,7 +62,6 @@ const Login = () => {
                             const email = values.email
                             const password = values.password
                             signInWithEmail(email, password)
-                            // dispatch(login());
                             // router.push("/");
                         }}
                         >
@@ -111,7 +113,7 @@ const Login = () => {
                                 
                             </div>
                             
-                            <button type="submit" className="btn mt-8" disabled={isSubmitting}>
+                            <button type="submit" className="btn mt-8">
                                 Continue
                             </button>
                             </form>

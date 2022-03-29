@@ -6,6 +6,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPas
 //redux states
 import { useDispatch } from "react-redux";
 import { login } from "../store/actions/authActions";
+import { OpenUp } from "../animations/popup";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -22,9 +23,15 @@ const firebaseConfig = {
 // Initialize Firebase
 export const initializeFirebaseApp = initializeApp(firebaseConfig);
 
+//Authentication
+export const auth = getAuth();
+
 //database
 export const db = getFirestore(initializeFirebaseApp)
 
+
+
+//Adding to storage
 export const AddToStore = async(user) =>{
   const data = {
       uid: user.uid,
@@ -92,7 +99,6 @@ export const resetPassword=(newPassword)=>{
 
 
 
-
 //Create user with email and password
 export const createUserWithEmail = async(email, password)=>{
 
@@ -102,18 +108,18 @@ export const createUserWithEmail = async(email, password)=>{
     const user = userCredential.user;
     AddToStore(user)
     // ...
+
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    OpenUp()
     // ..
-    console.log(errorMessage)
+    
   });
 }
 
 
-//Authentication
-export const auth = getAuth();
 
 //Create user with email and password
 export const signInWithEmail = async(email, password)=>{
@@ -128,7 +134,7 @@ export const signInWithEmail = async(email, password)=>{
     const errorCode = error.code;
     const errorMessage = error.message;
     // ..
-    console.log(errorMessage)
+    OpenUp()
   });
 }
 
@@ -142,8 +148,7 @@ export const SignInWithGoogle =()=>{
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     // The signed-in user info.
-    const user = result.user;    
-    console.log(user)  
+    const user = result.user; 
     // ...
     AddToStore(user)
 
