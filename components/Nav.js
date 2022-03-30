@@ -48,7 +48,7 @@ function Nav() {
 
         tIn.current = gsap.timeline()
             .fromTo(sideNav, {translateX: "-100vw"}, {translateX: "0",  duration: 1, ease: "expo.out"})
-            .fromTo(q(".nav-links-text"), {y: 200}, {y: 0, stagger: 0.25, duration: 0.75}, "<")
+            .fromTo(q(".nav-links-text"), {y: 200}, {y: 0, stagger: 0.25, duration: 0.5}, "<")
     }
 
     
