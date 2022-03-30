@@ -29,7 +29,7 @@ const cart = (state=initiaState, action) =>{
                     totalCartQuantity: state.totalCartQuantity + action.payload.quantity,
                     totalCartPrice: state.totalCartPrice +  action.payload.totalItemPrice
                 }
-                UploadCart(newState)
+                
                 return newState;
             }else{
                 let newArray = [...state.cart]
@@ -41,7 +41,7 @@ const cart = (state=initiaState, action) =>{
                     totalCartQuantity: state.totalCartQuantity + action.payload.quantity,
                     totalCartPrice: state.totalCartPrice + action.payload.totalItemPrice
                 }
-                UploadCart(newState)
+                
                 return newState;
             }
             
