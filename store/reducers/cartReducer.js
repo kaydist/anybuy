@@ -34,7 +34,7 @@ const cart = (state=initiaState, action) =>{
             }else{
                 let newArray = [...state.cart]
                 newArray[getIndex].quantity = getItem.quantity + 1
-                newArray[getIndex].totalItemPrice = getItem.quantity * getItem.totalItemPrice
+                newArray[getIndex].totalItemPrice = Number(action.payload.sellingPrice) + getItem.totalItemPrice
                 let newState = {
                     ...state,
                     cart: newArray,
