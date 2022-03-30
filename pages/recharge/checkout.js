@@ -14,6 +14,7 @@ import SuccessImage from "../../assets/svgs/success.svg"
 
 //image
 import RechargeReview from '../../components/cart/RechargeReview';
+import needAuth from '../../routes/needAuth';
 
 export const SaveIcon=()=>{
     return(
@@ -220,4 +221,4 @@ function RechargeCheckout() {
     )
 }
 
-export default RechargeCheckout
+export default needAuth(RechargeCheckout)

@@ -10,6 +10,7 @@ import ResetPassword from "../components/profile/ResetPassword";
 import ShippingInfo from "../components/profile/ShippingInfo";
 import ProfileInfo from "../components/profile/ProfileInfo";
 import { signingOut } from '../Config/firebase';
+import needAuth from '../routes/needAuth';
 
 
 function Profile() {
@@ -70,4 +71,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default needAuth(Profile)

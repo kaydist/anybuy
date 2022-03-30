@@ -5,6 +5,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPas
 
 //redux states
 import { useDispatch } from "react-redux";
+import { useRouter } from 'next/router'
 import { login } from "../store/actions/authActions";
 import { OpenUp } from "../animations/popup";
 
@@ -85,6 +86,23 @@ export const AddToProfileInfo = async(values, userId) =>{
   }
 }
 
+//update cart
+export const UpdateCart= async(newState, userId) =>{
+  const data = {
+    cart : newState
+  }
+  try {
+    const docRef = await setDoc(doc(db, "users", `${userId}`), data, { merge: true });
+    console.log(docRef.id)
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+
+
+
+
 
 //Reset Password
 export const resetPassword=(newPassword)=>{
@@ -95,8 +113,6 @@ export const resetPassword=(newPassword)=>{
     // ...
   });
 }
-
-
 
 
 //Create user with email and password
@@ -129,6 +145,8 @@ export const signInWithEmail = async(email, password)=>{
     // Adding to store
     const user = userCredential.user;
     // ...
+    const Router = useRouter()
+    Router.back()
   })
   .catch((error) => {
     const errorCode = error.code;

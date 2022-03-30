@@ -14,6 +14,7 @@ import SuccessImage from "../assets/svgs/success.svg"
 
 //image
 import OrderReview from '../components/cart/OrderReview';
+import needAuth from '../routes/needAuth';
 
 export const SaveIcon=()=>{
     /* eslint-disable no-alert, no-console */
@@ -332,4 +333,4 @@ function checkout() {
     )
 }
 
-export default checkout
+export default needAuth(checkout)

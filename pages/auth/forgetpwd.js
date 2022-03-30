@@ -7,6 +7,7 @@ import { Formik } from "formik";
 
 //icons
 import ForgetPasswordIcon from "../../assets/svgs/forgetpassword.svg"
+import isAuthed from '../../routes/isAuthed';
 
 const ForgetPassword = () => {
     const router = useRouter()
@@ -81,4 +82,4 @@ const ForgetPassword = () => {
     )
 }
 
-export default ForgetPassword
+export default isAuthed(ForgetPassword)

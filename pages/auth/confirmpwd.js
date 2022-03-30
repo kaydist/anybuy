@@ -3,6 +3,7 @@ import Link from "next/link"
 
 //components
 import { Formik } from "formik";
+import isAuthed from '../../routes/isAuthed';
 
 function confirmpwd() {
     return (
@@ -84,4 +85,4 @@ function confirmpwd() {
     )
 }
 
-export default confirmpwd
+export default isAuthed(confirmpwd)

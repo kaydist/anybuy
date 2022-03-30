@@ -7,6 +7,7 @@ import { Formik } from "formik";
 
 //icons
 import VerifyEmailSVG from "../../assets/svgs/verify-email.svg"
+import isAuthed from '../../routes/isAuthed';
 
 const VerifyEmail = () => {
     return (
@@ -129,4 +130,4 @@ const VerifyEmail = () => {
     )
 }
 
-export default VerifyEmail
+export default isAuthed(VerifyEmail)

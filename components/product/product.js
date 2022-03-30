@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AddToCart } from '../../store/actions/quantityChange'
 
 //icon
@@ -9,16 +9,34 @@ import ShoppingIcon from "../../assets/icons/shopping-bag.svg"
 
 function Product({product}) {
     const dispatch = useDispatch()
+    const AuthState = useSelector((state) => state.auth)
     const router = useRouter()
 
     const route =()=>{
         router.push(`/product/${id}`)
-        
     }
 
     const {
-        id, name, thumbnail, image, discount, sellingPrice, originalPrice, about,  colors, rating, reviews 
+        id, name, thumbnail, image, discount, sellingPrice, originalPrice
     } = product
+
+    const AddtocartFunction=()=>{
+        if(AuthState.currentUser === null){
+            router.push(`/auth/login`)
+        }else{      
+
+            const activeType = image[0].picture
+            const quantity = 1
+
+            const promising = new Promise((resolve)=>{
+                resolve(1 * Number(sellingPrice))
+            })
+            promising.then((totalItemPrice)=> {
+                dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
+            })
+
+        }
+    }
     
     return (
         <>
@@ -27,17 +45,7 @@ function Product({product}) {
                 <div><p className="rounded-lg p-1 text-sm bg-notification-bg">{discount}</p></div>
                 <div 
                 className="hover:cursor-pointer"
-                onClick={()=>{
-                    const activeType = image[0].picture
-                    const quantity = 1
-
-                    const promising = new Promise((resolve)=>{
-                        resolve(1 * Number(sellingPrice))
-                    })
-                    promising.then((totalItemPrice)=> {
-                        dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
-                    })
-                }}>
+                onClick={AddtocartFunction}>
                     <Image src={ShoppingIcon} alt="Earpod" height="22" />
                 </div>
             </div>

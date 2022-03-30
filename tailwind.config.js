@@ -1,5 +1,6 @@
 const plugin = require('tailwindcss/plugin')
 
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -12,7 +13,8 @@ module.exports = {
           'muted': '#C4C4C4',
           'notification-bg': '#FFA573',
           'footer-bg': '#141B22',
-          'body-bg': '#F4F4F4'
+          'body-bg': '#F4F4F4',
+          'darker-primary': '#FF5115'
         },
 
         gridTemplateColumns: {
@@ -70,7 +72,12 @@ module.exports = {
             gap: theme('spacing.2'),
             '&:hover': {
               cusor: 'pointer',
-            }
+              backgroundColor: theme('colors.darker-primary')
+            },
+            '&:active': {
+              cusor: 'pointer',
+              backgroundColor: theme('colors.darker-primary')
+            },
           },
 
           '.outlined_btn': {

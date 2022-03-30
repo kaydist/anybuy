@@ -15,10 +15,11 @@ import { login } from "../../store/actions/authActions";
 //firebase
 import { signInWithEmail, SignInWithGoogle } from '../../Config/firebase';
 import PopNotification from '../../components/PopNotification';
+import isAuthed from '../../routes/isAuthed';
 
 const Login = () => {
     const dispatch = useDispatch()
-    const router = useRouter()
+
     
     return (
         <section className="flex justify-center items-center w-full h-fit min-h-[80vh]">
@@ -127,4 +128,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default isAuthed(Login)

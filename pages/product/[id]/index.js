@@ -177,7 +177,7 @@ function Item({product}) {
                                 >
                                     Add to Cart
                             </button>
-                            <Link href="/cart" passHref><button className="btn rounded-xl w-full bg-[#112211]">Buy Now</button></Link>
+                            <Link href="/cart" passHref><button className="btn rounded-xl w-full bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]">Buy Now</button></Link>
                         </div>
 
                         : <div className="flex gap-6">
@@ -196,7 +196,7 @@ function Item({product}) {
                                 >
                                     Add to Cart
                             </button>
-                            <Link href="/cart" passHref><button className="btn rounded-xl bg-[#112211]">Buy Now</button></Link>
+                            <Link href="/cart" passHref><button className="btn rounded-xl bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]">Buy Now</button></Link>
                             </div>
             }
                     

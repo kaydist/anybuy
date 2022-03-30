@@ -1,8 +1,8 @@
-// HOC/withAuth.jsx
+// HOC/needAuth.jsx
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
-const withAuth = (WrappedComponent) => {
+const needAuth = (WrappedComponent) => {
 
   return (props) => {
     // checks whether we are on client / browser or server.
@@ -28,4 +28,4 @@ const withAuth = (WrappedComponent) => {
   };
 };
 
-export default withAuth;
+export default needAuth;

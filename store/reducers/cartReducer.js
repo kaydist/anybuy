@@ -1,4 +1,5 @@
-
+import { UpdateCart } from "../../Config/firebase"
+import { useSelector } from "react-redux"
 
 const initiaState = {
     cart: [],
@@ -13,10 +14,14 @@ const cart = (state=initiaState, action) =>{
     const getItem = state.cart.find(item => item === getID)
     let newArray = [...state.cart]
 
+    const UploadCart=(newState)=>{        
+        let AuthState = useSelector((state)=> state.auth)
+        UpdateCart(newState, AuthState.currentUser.currentUser.uid);
+    }
+
     switch (action.type){
         
         case "AddToCart":
-
             if(getID === undefined){
                 let newState = {
                     ...state,
@@ -24,6 +29,7 @@ const cart = (state=initiaState, action) =>{
                     totalCartQuantity: state.totalCartQuantity + action.payload.quantity,
                     totalCartPrice: state.totalCartPrice +  action.payload.totalItemPrice
                 }
+                UploadCart(newState)
                 return newState;
             }else{
                 let newArray = [...state.cart]
@@ -35,6 +41,7 @@ const cart = (state=initiaState, action) =>{
                     totalCartQuantity: state.totalCartQuantity + action.payload.quantity,
                     totalCartPrice: state.totalCartPrice + action.payload.totalItemPrice
                 }
+                UploadCart(newState)
                 return newState;
             }
             
@@ -43,13 +50,14 @@ const cart = (state=initiaState, action) =>{
             let newTotalCartPrice = state.totalCartPrice - getItem.totalItemPrice 
             let newTotalCartQuantity = state.totalCartQuantity - getItem.quantity
             let updatedState = state.cart.filter(item => item.id !== action.payload.id)
-            
-            return {
+            let newRemoveState = {
                 ...state,
                 totalCartPrice: newTotalCartPrice,
                 totalCartQuantity: newTotalCartQuantity,                
                 cart: updatedState
-            };
+            }
+        
+            return newRemoveState;
         
         case "increaseQuantity":
             newArray[getIndex].quantity = getItem.quantity + 1

@@ -12,7 +12,7 @@ import SummaryCard from '../components/cart/SummaryCard'
 import QuantityButton from '../components/product/QuantityButton'
 
 //HOC
-import withAuth from "../routes/withAuth"
+import needAuth from "../routes/needAuth"
 
 function Cart() {
     let currentScreenWidth = useSelector((state)=> state.screenSize);
@@ -157,4 +157,4 @@ function Cart() {
     )
 }
 
-export default withAuth(Cart)
+export default needAuth(Cart)

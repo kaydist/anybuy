@@ -12,6 +12,7 @@ import GoogleIcon from "../../assets/svgs/Google-Icon.svg"
 
 //firebase
 import { createUserWithEmail, SignInWithGoogle } from '../../Config/firebase';
+import isAuthed from '../../routes/isAuthed';
 
 const signup = () => {
     return (
@@ -110,4 +111,4 @@ const signup = () => {
     )
 }
 
-export default signup
+export default isAuthed(signup)
