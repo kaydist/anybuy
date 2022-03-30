@@ -34,8 +34,8 @@ function SideNav() {
 
     const closeSideNav=()=>{
         tOut.current = gsap.timeline()
-        .to(q(".nav-links-text"), {y: 200, stagger: 0.25, duration: 1})
-        .to(sideNav, {translateX: "-100vw",  duration: 2, ease: "expo.out"}, "<")
+        .to(q(".nav-links-text"), {y: 200, stagger: 0.25, duration: 0.5})
+        .to(sideNav, {translateX: "-100vw",  duration: 1, ease: "expo.out"}, "<")
     }
 
     return (
