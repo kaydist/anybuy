@@ -57,6 +57,10 @@ module.exports = {
               borderWidth: theme('borderWidth.2')
             }
           },
+
+          '.checkmark': {
+            cursor: "pointer"
+          },
       
           '.btn': {
             paddingTop: theme('spacing.2'),
@@ -94,7 +98,7 @@ module.exports = {
             alignItems: 'center',
             gap: theme('spacing.2'),
             '&:hover': {
-              cusor: 'pointer',
+              cursor: 'pointer',
             }
           },
 
@@ -102,7 +106,7 @@ module.exports = {
             textDecoration: "line-through",
             color: theme('colors.muted'),
             '&:hover': {
-              cusor: 'pointer',
+              cursor: 'pointer',
             }
           },
 

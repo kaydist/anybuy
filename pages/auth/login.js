@@ -13,7 +13,7 @@ import GoogleIcon from "../../assets/svgs/Google-Icon.svg"
 import { login } from "../../store/actions/authActions";
 
 //firebase
-import { signInWithEmail, SignInWithGoogle } from '../../Config/firebase';
+import { signInWithEmail, SignInWithGoogle, SignInWithFacebook } from '../../Config/firebase';
 import PopNotification from '../../components/PopNotification';
 import isAuthed from '../../routes/isAuthed';
 
@@ -31,14 +31,30 @@ const Login = () => {
                     <p>Welcome back</p>
 
                     <div className="flex gap-2 my-8">
-                        <div 
-                        className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2" onClick={SignInWithGoogle}
-                        >
-                            <Image src={GoogleIcon} alt="" height="25" /> Google 
-                        </div>
-                        <div className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2">
-                            <Image src={FacebookIcon} alt="" height="25"/>Facebook
-                        </div>
+
+                        <label className="relative w-1/2 ">
+                            <input 
+                            type="radio" 
+                            className="input absolute z-20 inset-0 w-full h-full opacity-0 recharge_form" name="login-type"
+                            onClick={SignInWithFacebook}
+                            />
+                            <span className="checkmark input flex items-center gap-2 h-full mt-0">
+                                <Image src={GoogleIcon} alt="" height="25" />
+                                <p className="text-center">Google</p>
+                            </span>
+                        </label>
+                        <label className="relative w-1/2 ">
+                            <input 
+                            type="radio" 
+                            className="input absolute z-20 inset-0 w-full h-full opacity-0 recharge_form" name="login-type"
+                            onClick={SignInWithFacebook}
+                            />
+                            <span className="checkmark input flex items-center gap-2 h-full mt-0">
+                                <Image src={FacebookIcon} alt="" height="25" />
+                                <p className="text-center">Facebook</p>
+                            </span>
+                        </label>
+                        
                     </div>
 
                     <Formik

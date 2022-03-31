@@ -11,6 +11,7 @@ import Logo from "../assets/svgs/Logo.svg"
 import Facebook from "../assets/svgs/Facebook-mono-icon.svg"
 import Twitter from "../assets/svgs/twitter-icon.svg"
 import Instagram from "../assets/svgs/instagram-icon.svg"
+import { closeSideNav } from '../animations/sideNav-animation'
 
 function SideNav() {
     const CartCount = useSelector((state)=> state.cart)
@@ -28,15 +29,6 @@ function SideNav() {
        closeSideNav()
     }
 
-    const tOut = useRef(null)
-    const sideNav = document.getElementById('SideNav')    
-    const q = gsap.utils.selector(sideNav)
-
-    const closeSideNav=()=>{
-        tOut.current = gsap.timeline()
-        .to(q(".nav-links-text"), {y: 200, stagger: 0.25, duration: 0.5})
-        .to(sideNav, {translateX: "-100vw",  duration: 1, ease: "expo.out"}, "<")
-    }
 
     return (
         <div className="bg-body-bg w-screen h-screen fixed inset-0 z-[49] px-6 pt-8 pb-16 flex justify-between flex-col -translate-x-[100vw]" id="SideNav">

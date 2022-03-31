@@ -1,11 +1,13 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import Image from "next/image"
 import Link from "next/link"
 import {useRouter} from "next/router"
 import { useSelector } from "react-redux"
 import {gsap} from 'gsap'
 
-//styles
+//components
+import HeaderSearch from './Header-search'
+import Notification from './Notification'
 
 //images
 import MenuBar from "../assets/icons/Menu Bar.svg"
@@ -14,6 +16,8 @@ import Logo from "../assets/svgs/Logo.svg"
 //svgs
 import EmptyUserImage from "../assets/icons/user.svg"
 import CartIcon from "../assets/icons/shopping-bag.svg"
+import { OpenSearch } from '../animations/search-animation'
+import { openSideNav } from '../animations/sideNav-animation'
 
 export const SearchIcon=()=>{   
     return(
@@ -27,6 +31,7 @@ export const SearchIcon=()=>{
 }
 
 function Nav() {
+    const [searchState, setSearchState] = useState(false)
     const AuthState = useSelector((state)=> state.auth) 
     const CartCount = useSelector((state)=> state.cart) 
 
@@ -40,28 +45,19 @@ function Nav() {
        router.push(`${url}`)
     }
 
-    const tIn = useRef(null)
-    const sideNav = document.getElementById('SideNav')    
-    const q = gsap.utils.selector(sideNav)
-
-    const openSideNav=()=>{
-
-        tIn.current = gsap.timeline()
-            .fromTo(sideNav, {translateX: "-100vw"}, {translateX: "0",  duration: 1, ease: "expo.out"})
-            .fromTo(q(".nav-links-text"), {y: 200}, {y: 0, stagger: 0.25, duration: 0.5}, "<")
-    }
-
     
 
 
     return (
-        <header className="mx-auto my-0 flex justify-between items-center p-4 lg:px-44 lg:py-4 bg-white max-w-[109.2rem] z-40 fixed w-screen h-20" >
+        <header className="mx-auto my-0 flex justify-between items-center p-4 lg:px-44 lg:py-4 bg-white max-w-[109.2rem] z-40 fixed w-screen h-20" >            
+            {/* <Notification message="Filters applied" /> */}
+
             <div className="flex gap-4 items-center">
                <div onClick={openSideNav} className="inline-block lg:hidden z-50">
                     <Image src={MenuBar} alt="Menu" />
                 </div>
-                <div>
-                    <Image src={Logo} alt="AnyBuy" />
+                <div id="Nav-logo">
+                    <Image src={Logo} alt="AnyBuy"/>
                 </div> 
             </div>
             
@@ -84,16 +80,20 @@ function Nav() {
                 </ul>
             </nav>
 
+            <div className='hidden lg:hidden items-end justify-end'  id="Nav-Search">
+                <HeaderSearch isOpen={searchState} />
+            </div>
+
             {
                 AuthState.currentUser === null
                 ? <div>
                     <ul>
                         <Link href="/auth/login" passHref>
-                            <li className="relative hidden lg:inline-block mx-9 font-bold text-sm">Sign In</li>
+                            <li className="relative inline-block mx-9 font-bold text-sm">Sign In</li>
                         </Link>
 
                         <Link href="/auth/signup" passHref>
-                            <li className="inline-block ml-9">
+                            <li className="hidden lg:inline-block ml-9">
                                 <button className="px-8 py-3 btn font-bold text-sm">Create Account</button>
                             </li>
                         </Link>
@@ -103,22 +103,30 @@ function Nav() {
               
                 : <div className="inline-block">
                     <ul className="flex">
-
-                        
                             <li className="relative flex justify-end items-center gap-4 lg:mx-9 font-bold text-sm">
-                                <div className="lg:hidden rounded-full h-6 w-6 flex items-center justify-center">
+
+                                <div 
+                                className="lg:hidden rounded-full h-6 w-6 flex items-center justify-center" 
+                                id="Nav-Search-Icon"
+                                onClick={()=>{
+                                    OpenSearch
+                                    setSearchState(true)
+                                }}>
                                     <SearchIcon />
                                 </div>
 
-<Link href="/profile" passHref>
-                                <div className="rounded-full bg-muted h-6 w-6 flex items-center justify-center p-0 lg:p-1">
-                                    {
-                            AuthState.currentUser?.photoURL !== null
-                            ?   <Image src={AuthState.currentUser?.photoURL} alt="" layout="fill"/>
-                            :   <Image src={EmptyUserImage} alt="No profile Picture" height="100"/>
-                        }
-                                </div>  <span className="hidden lg:inline">Profile</span>
-</Link>
+                            <Link href="/profile" passHref>
+                                <div className="flex items-center gap-2">
+                                    <span className="rounded-full bg-muted h-6 w-6 flex items-center justify-center p-0 relative">
+                                {
+                                    AuthState.currentUser?.photoURL !== null
+                                    ?   <Image src={AuthState.currentUser?.photoURL} alt="" height="100" width="100" objectFit="fill" className="rounded-full"/>
+                                    :   <Image src={EmptyUserImage} alt="No profile Picture" height="100"/>
+                                }
+                                    </span>  
+                                    <span className="hidden lg:inline">Profile</span>
+                                </div>
+                            </Link>
                             </li>
                         
 

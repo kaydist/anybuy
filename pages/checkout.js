@@ -4,17 +4,19 @@ import React from 'react'
 //components
 import { Formik } from "formik";
 import Modal from "../components/Modal"
+import StripeCheckoutForm from '../components/CheckoutForm';
 
 //svg
 import Arrow from "../assets/icons/dropdown-arrow.svg"
-import MastercardLogo from "../assets/svgs/mastercard logo.svg"
-import PaypalLogo from "../assets/svgs/PayPal Logo.svg"
-import VisaLogo from "../assets/svgs/Visa Logo.svg"
 import SuccessImage from "../assets/svgs/success.svg"
 
 //image
 import OrderReview from '../components/cart/OrderReview';
 import needAuth from '../routes/needAuth';
+
+//stripe
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
 
 export const SaveIcon=()=>{
     /* eslint-disable no-alert, no-console */
@@ -30,25 +32,26 @@ export const SaveIcon=()=>{
     /* eslint-enable no-alert, no-console */
 }
 
+
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe('pk_test_51KiackC2Sb7pUw98SzfBW6ls6QpeKiDzdTncO2s4gp1pJ9IRhlVMbG8AhdeXVBtLeAI3xps4XxzucH7pN2OGkfKk00YKaBDPmk');
+
 function checkout() {
 
     const handleAccordion=(x)=>{
-
-        const allCards = document.querySelectorAll(".content");        
-        allCards.forEach((index) => {
-            index.classList.remove("h-fit");
-            index.classList.remove("opacity-1");
-            index.classList.remove("mt-8");
-            index.classList.add("h-0");
-            index.classList.add("opacity-0");
-        });
-            const activeCard = document.getElementById(`content-${x}`)
-            activeCard.classList.remove("h-0");
-            activeCard.classList.remove("opacity-0");
-            activeCard.classList.add("h-fit");
-            activeCard.classList.add("opacity-1");
-            activeCard.classList.add("mt-8");
+        const activeCard = document.getElementById(`content-${x}`)
+        activeCard.classList.toggle("h-0");
+        activeCard.classList.toggle("opacity-0");
+        activeCard.classList.toggle("h-fit");
+        activeCard.classList.toggle("opacity-1");
+        activeCard.classList.toggle("mt-8");
     }
+
+    //stripe options
+    const options = {
+        // passing the client secret obtained from the server
+        clientSecret: '{{CLIENT_SECRET}}',
+      };
 
 
     return (
@@ -176,135 +179,13 @@ function checkout() {
                             <span><Image src={Arrow} alt="" height="10"/></span>
                         </div>
 
-                        <div className='h-0 opacity-0 content' id='content-2'>
-                        <div className="flex gap-3">
-                            <div id="visa" className="input w-36 h-16 p-2 flex items-center justify-center">
-                                <Image src={VisaLogo} alt="Visa" width='80' />
-                            </div>
-                            <div className="input w-36 h-16 p-2 flex items-center justify-center">
-                                <Image src={MastercardLogo} alt="Visa" width='80' />
-                            </div>
-                            <div className="input w-36 h-16 p-2 flex items-center justify-center">
-                                <Image src={PaypalLogo} alt="Visa" width='80' />
-                            </div>
-                        </div>
-
-                        <Formik
-                        initialValues={{ email: '', password: '' }}
-                        validate={values => {
-                            const errors = {};
-                            if (!values.email) {
-                            errors.email = 'Required';
-                            } else if (
-                            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                            ) {
-                            errors.email = 'Invalid email address';
-                            }
-                            return errors;
-                        }}
-                        onSubmit={(values, { setSubmitting }) => {
-                            setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                            setSubmitting(false);
-                            }, 400);
-                        }}
-                        >
-                        {({
-                            values,
-                            errors,
-                            touched,
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                            isSubmitting,
-                            /* and other goodies */
-                        }) => (
-                            <form onSubmit={handleSubmit} className="flex flex-col w-full my-12">
-                            
-                            <div className="flex flex-col lg:flex-row lg:gap-6">
-                                <div className="flex mb-4 flex-col w-full">
-                                    <label className="font-bold">Card Name</label>
-                                    <input
-                                        type="text"
-                                        name="card_name"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.card_name}
-                                        placeholder="John Doe"
-                                        className="input"
-                                    />
-                                    <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
-                                </div>
-                                <div className="flex mb-4 flex-col w-full">
-                                    <label className="font-bold">Card Number</label>
-                                    <input
-                                        type="tel"
-                                        name="card_number"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.card_number}
-                                        placeholder="xxxx-xxxx-xxxx-xxxx"
-                                        className="input"
-                                    />
-                                    <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col lg:flex-row lg:gap-6">
-                                <div className="flex mb-4 flex-col w-full">
-                                    <label className="font-bold">Exp. Date</label>
-                                    <input
-                                        type="date"
-                                        name="exp_date"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.exp_date}
-                                        placeholder="MM/YY"
-                                        className="input"
-                                    />
-                                    <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
-                                </div>
-                                <div className="flex mb-4 flex-col w-full">
-                                    <label className="font-bold">CVV</label>
-                                    <input
-                                        type="number"
-                                        name="cvv"
-                                        maxLength = "3"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.cvv}
-                                        placeholder="xxx"
-                                        className="input"
-                                    />
-                                    <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col lg:flex-row lg:gap-6">
-                                <div className="flex mb-4 flex-col w-full lg:w-1/2">
-                                    <p className="font-bold">Discount</p>
-                                    <div className="w-full border flex flex-row gap-2 bg-white px-1 rounded-lg">
-                                        <input
-                                        type="text"
-                                        name="coupon"
-                                        placeholder="Enter Coupon code"
-                                        className="input w-full border-0 m-0 py-0 focus:border-0"
-                                        />
-                                        <button className="my-1 btn rounded-lg">Apply</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-
-                            <div className="w-full flex justify-end gap-4">
-                                <button type="submit" className="outlined_btn mt-8 flex justify-center items-center gap-2" disabled={isSubmitting}>
-                                <SaveIcon />Save
-                                </button>
-                            </div>                            
-                            </form>
-                        )}
-                        </Formik>
+                        
+                    <div className='h-0 opacity-0 content' id='content-2'>
+                    <Elements stripe={stripePromise} options={options}>
+                        <StripeCheckoutForm />
+                    </Elements>
                     </div>
                     </div>
-                    
 
                 </div>
 

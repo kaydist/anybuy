@@ -2,6 +2,9 @@ import React from 'react'
 import Image from "next/image";
 import Link from "next/link"
 
+//RouteProtection
+import isAuthed from '../../routes/isAuthed';
+
 //components
 import { Formik } from "formik";
 import PopNotification from '../../components/PopNotification';
@@ -11,8 +14,7 @@ import FacebookIcon from "../../assets/svgs/Facebook-icon.svg"
 import GoogleIcon from "../../assets/svgs/Google-Icon.svg"
 
 //firebase
-import { createUserWithEmail, SignInWithGoogle } from '../../Config/firebase';
-import isAuthed from '../../routes/isAuthed';
+import { createUserWithEmail, SignInWithGoogle, SignInWithFacebook } from '../../Config/firebase';
 
 const signup = () => {
     return (
@@ -25,15 +27,30 @@ const signup = () => {
                     <p>Welcome to Anypay</p>
 
                     <div className="flex gap-2 my-8">
-                        <div 
-                        className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2"
-                        onClick={SignInWithGoogle}
-                        >
-                            <Image src={GoogleIcon} alt="" height="25" /> Google 
-                        </div>
-                        <div className="py-2 px-4 border-2 rounded-lg w-1/2 flex items-center gap-2">
-                            <Image src={FacebookIcon} alt="" height="25"/>Facebook
-                        </div>
+                        
+                        <label className="relative w-1/2 ">
+                                <input 
+                                type="radio" 
+                                className="input absolute z-20 inset-0 w-full h-full opacity-0 recharge_form" name="login-type"
+                                onClick={SignInWithFacebook}
+                                />
+                                <span className="checkmark input flex items-center gap-2 h-full mt-0">
+                                    <Image src={GoogleIcon} alt="" height="25" />
+                                    <p className="text-center">Google</p>
+                                </span>
+                            </label>
+                            <label className="relative w-1/2 ">
+                                <input 
+                                type="radio" 
+                                className="input absolute z-20 inset-0 w-full h-full opacity-0 recharge_form" name="login-type"
+                                onClick={SignInWithFacebook}
+                                />
+                                <span className="checkmark input flex items-center gap-2 h-full mt-0">
+                                    <Image src={FacebookIcon} alt="" height="25" />
+                                    <p className="text-center">Facebook</p>
+                                </span>
+                            </label>
+
                     </div>
 
                     <Formik

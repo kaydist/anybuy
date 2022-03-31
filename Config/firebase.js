@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, setDoc, getDoc}  from "firebase/firestore";
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, updatePassword, resetC, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, updatePassword, FacebookAuthProvider, signOut } from "firebase/auth";
 
 //redux states
 import { useDispatch } from "react-redux";
@@ -183,6 +183,39 @@ export const SignInWithGoogle =()=>{
     // ...
 });
 }
+
+//Create Account with Facebook
+export const SignInWithFacebook =()=>{
+  const provider = new FacebookAuthProvider();
+
+signInWithPopup(auth, provider)
+  .then((result) => {
+    // The signed-in user info.
+    const user = result.user;
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+
+    // ... Add to Database
+    AddToStore(user)
+
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
+
+    console.log(errorMessage)
+    // ...
+  });
+}
+
+
 
 // sign out 
 export const signingOut =()=>{

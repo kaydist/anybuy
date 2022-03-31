@@ -70,7 +70,9 @@ export default function Home() {
           <button className="btn mt-4 lg:hidden">Explore All</button>
       </div>
       
-      <Search />
+      <div className="mt-36 mb-12 lg:my-12 w-full">        
+        <Search />
+      </div>
 
       <div className="w-full overflow-hidden">
         <h3 className="font-extrabold text-xl text-white mb-4 w-full text-center">Recommeded for you</h3>

@@ -32,14 +32,14 @@ function Search() {
         if(search===""){
             setResult([])
         }else{
-        setResult(filter)
+            setResult(filter)
         }
         sessionStorage.setItem('search', JSON.stringify(filter))
     }, [search])
 
     return (
     <div className="w-full h-fit flex justify-center items-center">
-        <div className="w-full lg:w-1/2 flex flex-row gap-2 bg-white px-4 rounded-lg mt-36 mb-12 lg:my-12 overflow-visible relative">
+        <div className="w-full lg:w-1/2 flex flex-row gap-2 bg-white px-4 rounded-lg overflow-visible relative">
             <div className="p-3 my-2 w-10 h-10 bg-primary flex items-center justify-center rounded-full" onClick={handleSubmit}>
                 <Image src={SearchIcon} alt="" height="100" />
             </div>
@@ -55,7 +55,7 @@ function Search() {
             </form>
       </div>
 
-      <div className="w-full lg:w-1/2 top-[55%] lg:top-[40%] bg-white absolute z-20">
+        <div className="w-full lg:w-1/2 top-[55%] lg:top-[40%] bg-white absolute z-20">
             {
                 result.map((item, idx) => {
                     return (

@@ -15,6 +15,7 @@ import FilterIcon from "../../assets/icons/filter.svg"
 import EarpodBanner from "../../assets/images/earpod.png"
 import Notification from "../../components/Notification"
 import { server } from "../../Config"
+import { OpenFilterNot } from "../../animations/filter"
 
 function AllProductsPage({AllProducts}) {
     const router = useRouter()
@@ -67,7 +68,15 @@ function AllProductsPage({AllProducts}) {
                         <div className="mt-10">
                             <ResizableSlider thumb={thumb}/>
                         </div>
-                        <button className="btn float-right mt-10" onClick={filtering}>Apply</button>
+
+                        <button 
+                        className="btn float-right mt-10" 
+                        onClick={()=>{
+                            filtering
+                            OpenFilterNot()
+                        }}>
+                            Apply
+                        </button>
                     </div>
                 </div>
                 
