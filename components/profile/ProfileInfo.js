@@ -82,11 +82,12 @@ function ProfileInfo() {
 
                 <div className="flex flex-col gap-6 my-4 items-center justify-center">
                     <div className="rounded-full relative w-20 h-20 bg-muted flex items-center justify-center p-1">
-                        {/* {
+                        {
                             currentUser.currentUser?.photoURL !== null
-                            ?   <Image src={currentUser.currentUser?.photoURL} alt="No profile Picture" layout="fill"/>
+                            ?   <Image src={currentUser.currentUser?.photoURL} alt="" layout="fill"/>
                             :   <Image src={EmptyUserImage} alt="No profile Picture" height="100"/>
-                        } */}
+                        } 
+
                     </div>
 
                     <div className="text-center">
