@@ -43,12 +43,6 @@ export default function Home() {
       thumbnail: "https://res.cloudinary.com/kaydist/image/upload/v1646751498/Anybuy/categories/Ellipse_6_ylxo7f.png"
     },
     {
-      id: 5,
-      name: "Laptops",
-      title: "Laptops",
-      thumbnail: "https://res.cloudinary.com/kaydist/image/upload/v1646751498/Anybuy/categories/Ellipse_6_ylxo7f.png"
-    },
-    {
       id: 6,
       name: "VR",
       title: "VR",
@@ -62,7 +56,7 @@ export default function Home() {
       <div className="flex justify-center flex-col items-center z-10 relative">
       <div className="flex justify-center flex-col items-start lg:items-center w-full px-4 text-white font-black mt-20">
           <h1 className="lg:text-4xl text-2xl">
-          Buy the best Product
+          Buy the best Products
           </h1>
           <h1 className="lg:text-4xl text-2xl">
           at Affordable Prices
@@ -124,7 +118,7 @@ export default function Home() {
           return(
             <div 
             key={category.id}
-            className="gap-2 flex flex-col items-center justify-center"
+            className="card gap-2 flex flex-col items-center justify-center"
             onClick={()=>{
               router.push({
                 pathname: `/category/${category.name}`,
