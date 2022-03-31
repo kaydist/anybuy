@@ -32,7 +32,7 @@ const signup = () => {
                                 <input 
                                 type="radio" 
                                 className="input absolute z-20 inset-0 w-full h-full opacity-0 recharge_form" name="login-type"
-                                onClick={SignInWithFacebook}
+                                onClick={SignInWithGoogle}
                                 />
                                 <span className="checkmark input flex items-center gap-2 h-full mt-0">
                                     <Image src={GoogleIcon} alt="" height="25" />
