@@ -104,22 +104,28 @@ function Nav() {
                 : <div className="inline-block">
                     <ul className="flex">
 
-                        <Link href="/profile" passHref>
+                        
                             <li className="relative flex justify-end items-center gap-4 lg:mx-9 font-bold text-sm">
                                 <div className="lg:hidden rounded-full h-6 w-6 flex items-center justify-center">
                                     <SearchIcon />
                                 </div>
 
+<Link href="/profile" passHref>
                                 <div className="rounded-full bg-muted h-6 w-6 flex items-center justify-center p-0 lg:p-1">
-                                    <Image src={EmptyUserImage} alt="No profile Picture" height="100"/>
+                                    {
+                            AuthState.currentUser?.photoURL !== null
+                            ?   <Image src={AuthState.currentUser?.photoURL} alt="" layout="fill"/>
+                            :   <Image src={EmptyUserImage} alt="No profile Picture" height="100"/>
+                        }
                                 </div>  <span className="hidden lg:inline">Profile</span>
+</Link>
                             </li>
-                        </Link>
+                        
 
                         <Link href="/cart" passHref>
                             <li className="relative hidden lg:flex items-center gap-2 mx-9 font-bold text-sm">
                                 <div className="h-6 w-6 flex items-center justify-center relative">
-                                    <Image src={CartIcon} alt="No profile Picture" height="100"/>
+                                    <Image src={CartIcon} alt="" height="100"/>
                                     {
                                         
                                         CartCount.cart.length > 0
