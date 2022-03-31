@@ -53,16 +53,17 @@ function Cart() {
                                     return (
                                         <tr className="border-t border-[#9F9F9F15]" key={idx}>
                                             <td className="p-4 border-r border-[#9F9F9F15]">
-                                                <Image 
-                                                src={DeleteIcon} 
-                                                alt="remove from cart" 
-                                                width="100" 
-                                                height="50" 
-                                                className="btn bg-white p-0"
-                                                onClick={()=> {
-                                                    dispatch(RemoveFromCart(product))
-                                                }}
-                                                />
+                                                <span className="btn bg-white p-1 rounded-full h-6 w-6">
+                                                    <Image 
+                                                    src={DeleteIcon} 
+                                                    alt="remove from cart" 
+                                                    width="50" 
+                                                    height="50" 
+                                                    onClick={()=> {
+                                                        dispatch(RemoveFromCart(product))
+                                                    }}
+                                                    />                                                    
+                                                </span>
                                             </td>
                                             <td className="p-4 border-r border-[#9F9F9F15]">
                                                 <div className="flex items-center justify-start gap-4">

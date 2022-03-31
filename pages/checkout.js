@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 
 //components
 import { Formik } from "formik";
@@ -17,6 +18,7 @@ import needAuth from '../routes/needAuth';
 //stripe
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+import { AddToShippingInfo } from '../Config/firebase';
 
 export const SaveIcon=()=>{
     /* eslint-disable no-alert, no-console */
@@ -53,6 +55,7 @@ function checkout() {
         clientSecret: '{{CLIENT_SECRET}}',
       };
 
+    const currentUser = useSelector((state)=> state.auth.currentUser)
 
     return (
         <>
@@ -70,106 +73,125 @@ function checkout() {
                         </div>
 
                         <div className='h-fit opacity-1 mt-8 content' id='content-1'>
-                        <Formik
-                        initialValues={{ email: '', password: '' }}
-                        validate={values => {
-                            const errors = {};
-                            if (!values.email) {
-                            errors.email = 'Required';
-                            } else if (
-                            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                            ) {
-                            errors.email = 'Invalid email address';
+                            {
+                                currentUser?.shippingInfo !== null
+                                ?   <span>
+                                        <p>{currentUser?.shippingInfo?.firstName} {currentUser?.shippingInfo?.lastName}</p>
+                                        <p>{currentUser?.shippingInfo?.phoneNumber}</p>
+                                        <p>{currentUser?.shippingInfo?.address}</p>
+                                    </span>
+                                
+                                : <Formik
+                                initialValues={{
+                                    firstName: '',
+                                    lastName: '',
+                                    phoneNumber: '',
+                                    address: ''
+                                }}
+                                validate={values => {
+                                    const errors = {};
+                                    if (!values.firstName) {
+                                    errors.firstName = 'Required';
+                                    } 
+                                    if (!values.lastName) {
+                                    errors.lastName = 'Required';
+                                    } 
+                                    if (!values.phoneNumber) {
+                                    errors.phoneNumber = 'Required';
+                                    } 
+                                    if (!values.address) {
+                                    errors.address = 'Required';
+                                    } 
+                                    return errors;
+                                }}
+                                onSubmit={(values, { setSubmitting }) => {
+                                    let userId = currentUser.uid
+                                    AddToShippingInfo(values, userId)
+                                }}
+                                >
+                                {({
+                                    values,
+                                    errors,
+                                    touched,
+                                    handleChange,
+                                    handleBlur,
+                                    handleSubmit,
+                                    isSubmitting,
+                                    /* and other goodies */
+                                }) => (
+                                    <form onSubmit={handleSubmit} className="flex flex-col w-full mb-12">
+                                    
+                                    <div className="flex flex-col lg:flex-row lg:gap-6">
+                                        <div className="flex mb-4 flex-col w-full">
+                                            <label className="font-bold">First Name</label>
+                                            <input
+                                                type="text"
+                                                name="firstName"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.firstName}
+                                                placeholder="John"
+                                                className="input"
+                                            />
+                                            <p className="text-red-600">{errors.firstName && touched.firstName && errors.firstName}</p>
+                                        </div>
+                                        <div className="flex mb-4 flex-col w-full">
+                                            <label className="font-bold">Last Name</label>
+                                            <input
+                                                type="text"
+                                                name="lastName"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.lastName}
+                                                placeholder="Doe"
+                                                className="input"
+                                            />
+                                        <p className="text-red-600">{errors.lastName && touched.lastName && errors.lastName}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col lg:flex-row lg:gap-6">
+                                        <div className="flex mb-4 flex-col w-full">
+                                            <label className="font-bold">Address</label>
+                                            <textarea
+                                                type="text"
+                                                name="address"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.address}
+                                                placeholder="Enter your shipping Adderess"
+                                                className="input h-[8rem] resize-none"
+                                            />
+                                            <p className="text-red-600">{errors.address && touched.address && errors.address}</p>
+                                        </div>
+                                        <div className="flex mb-4 flex-col w-full">
+                                            <label className="font-bold">Phone Number</label>
+                                            <input
+                                                type="tel"
+                                                name="phoneNumber"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.phoneNumber}
+                                                placeholder="+234 000 0000"
+                                                className="input"
+                                            />
+                                            <p className="text-red-600">{errors.phoneNumber && touched.phoneNumber && errors.phoneNumber}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="w-full flex justify-end gap-4">
+                                        <button type="submit" className="outlined_btn mt-8 flex justify-center items-center gap-2" disabled={isSubmitting}>
+                                            <SaveIcon />Save
+                                        </button>
+                                        <button type="submit" className="btn mt-8" disabled={isSubmitting}>
+                                            Next
+                                        </button>
+                                    </div>                            
+                                    </form>
+                                )}
+                                </Formik>
+                                
                             }
-                            return errors;
-                        }}
-                        onSubmit={(values, { setSubmitting }) => {
-                            setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                            setSubmitting(false);
-                            }, 400);
-                        }}
-                        >
-                        {({
-                            values,
-                            errors,
-                            touched,
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                            isSubmitting,
-                            /* and other goodies */
-                        }) => (
-                            <form onSubmit={handleSubmit} className="flex flex-col w-full mb-12">
-                            
-                            <div className="flex flex-col lg:flex-row lg:gap-6">
-                                <div className="flex mb-4 flex-col w-full">
-                                    <label className="font-bold">First Name</label>
-                                    <input
-                                        type="text"
-                                        name="first_name"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.first_name}
-                                        placeholder="John"
-                                        className="input"
-                                    />
-                                    <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
-                                </div>
-                                <div className="flex mb-4 flex-col w-full">
-                                    <label className="font-bold">Last Name</label>
-                                    <input
-                                        type="text"
-                                        name="last_name"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.last_name}
-                                        placeholder="Doe"
-                                        className="input"
-                                    />
-                                    <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col lg:flex-row lg:gap-6">
-                                <div className="flex mb-4 flex-col w-full">
-                                    <label className="font-bold">Address</label>
-                                    <textarea
-                                        type="text"
-                                        name="address"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.address}
-                                        placeholder="Enter your shipping Adderess"
-                                        className="input h-[8rem] resize-none"
-                                    />
-                                    <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
-                                </div>
-                                <div className="flex mb-4 flex-col w-full">
-                                    <label className="font-bold">Phone Number</label>
-                                    <input
-                                        type="tel"
-                                        name="telephone"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.last_name}
-                                        placeholder="+234 000 0000"
-                                        className="input"
-                                    />
-                                    <p className="text-red-600">{errors.email && touched.email && errors.email}</p>
-                                </div>
-                            </div>
-                            
-                            <div className="w-full flex justify-end gap-4">
-                                <button type="submit" className="outlined_btn mt-8 flex justify-center items-center gap-2" disabled={isSubmitting}>
-                                    <SaveIcon />Save
-                                </button>
-                                <button type="submit" className="btn mt-8" disabled={isSubmitting}>
-                                    Next
-                                </button>
-                            </div>                            
-                            </form>
-                        )}
-                        </Formik>
+ 
                         </div>
                     </div>
 
@@ -181,9 +203,7 @@ function checkout() {
 
                         
                     <div className='h-0 opacity-0 content' id='content-2'>
-                    <Elements stripe={stripePromise} options={options}>
                         <StripeCheckoutForm />
-                    </Elements>
                     </div>
                     </div>
 
