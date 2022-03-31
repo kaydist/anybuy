@@ -18,7 +18,7 @@ function PopNotification({message, openPopUp}) {
     return (
         <>
             <div className="card w-fit shadow-md px-6 text-red-600 absolute top-0 left-1/2 -translate-y-1/2 -translate-x-1/2 hidden justify-center items-center h-12" ref={PopUp} id="PopUp">
-                <p className="flex flex-nowrap gap-4 justify-center items-center w-[95%]">
+                <p className="flex flex-nowrap gap-4 justify-center items-center w-[95%] text-sm">
                     {message}
                 </p>            
                 <div className="float-right inline-block" onClick={ClosePopUp}><CloseIcon /></div>
