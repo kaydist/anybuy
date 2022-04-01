@@ -55,7 +55,9 @@ function ResetPassword() {
                     const errors = {};
                     if (!values.password) {
                     errors.password = 'Required';
-                    } 
+                    } else if (values.password.length < 7 ){
+                        errors.confirmPassword = 'Too Weak'
+                    }
                     if (!values.confirmPassword){
                         errors.confirmPassword = 'Required';
                     } else if (values.password !== values.confirmPassword ){
