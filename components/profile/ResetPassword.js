@@ -64,7 +64,7 @@ function ResetPassword() {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    let newPassword = values
+                    let newPassword = values.password
                     resetPassword(newPassword)
                 }}
                 >
