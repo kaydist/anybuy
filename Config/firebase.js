@@ -106,7 +106,7 @@ export const UpdateCart= async(newState, userId) =>{
 
 //Reset Password
 export const resetPassword=(newPassword)=>{
-  updatePassword(user, newPassword).then(() => {
+  updatePassword(auth.currentUser, newPassword).then(() => {
     // Update successful.
   }).catch((error) => {
     // An error ocurred
