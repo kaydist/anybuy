@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 //components
 import { Formik } from "formik";
@@ -38,7 +38,7 @@ export const SaveIcon=()=>{
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe('pk_test_51KiackC2Sb7pUw98SzfBW6ls6QpeKiDzdTncO2s4gp1pJ9IRhlVMbG8AhdeXVBtLeAI3xps4XxzucH7pN2OGkfKk00YKaBDPmk');
 
-function checkout() {
+function Checkout() {
 
     const handleAccordion=(x)=>{
         const activeCard = document.getElementById(`content-${x}`)
@@ -234,4 +234,4 @@ function checkout() {
     )
 }
 
-export default needAuth(checkout)
+export default needAuth(Checkout)
