@@ -40,6 +40,7 @@ function Item({product}) {
     let currentScreenWidth = useSelector((state)=> state.screenSize);
     const productImageContainer = useRef(null)
     const [activeColor, setActiveColor] = useState(0) 
+    const [openModal, setOpenModal] = useState(false)
 
     const dispatch = useDispatch()
     const {id, name, image, discount, sellingPrice, originalPrice, about,  colors, rating, reviews } = product
@@ -103,13 +104,16 @@ function Item({product}) {
             
         
             <div className="grid grid-rows-auto-fill lg:grid-rows-1 lg:grid-cols-2 lg:h-[25rem] gap-12">
-                <div className="lg:bg-white bg-[#DEDEDE] h-[18rem] w-screen lg:w-full lg:rounded-2xl lg:h-full -mx-3 p-6 overflow-hidden">
+                <div
+                className="bg-white h-[18rem] w-screen lg:w-full lg:rounded-2xl lg:h-full -mx-3 p-4 lg:p-10 overflow-hidden"
+                
+                >
                 <div className="h-full flex items-center justify-start" ref={productImageContainer}>
                     {
                         image.map((image)=>{
                             return(                                
-                                <div key={image.id} className="relative min-w-full h-full product-image-container" >
-                                    <Image src={image.picture} alt="Earpod" layout="fill" />
+                                <div key={image.id} className="relative min-w-[100vw] lg:min-w-full h-full product-image-container" >
+                                    <Image src={image.picture} alt="Earpod" layout="fill" className="scale-[0.8] object-contain"/>
                                 </div>
                             )
                         })
@@ -171,6 +175,8 @@ function Item({product}) {
                                 })
                                 promising.then((totalItemPrice)=> {
                                     dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
+                                }).then(()=>{
+                                    setOpenModal(!openModal)
                                 })
                                 
                             }} 
@@ -190,6 +196,8 @@ function Item({product}) {
                                 })
                                 promising.then((totalItemPrice)=> {
                                     dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
+                                }).then(()=>{
+                                    setOpenModal(!openModal)
                                 })
                                 
                             }} 
@@ -327,17 +335,24 @@ function Item({product}) {
             </ProductIndex>
             </aside>
             
-            <Modal>
+            <Modal state={openModal} close={()=>setOpenModal(!openModal)}>
                 <div className="card w-[92%] md:w-[32rem] flex flex-col items-center gap-8">
-                    <p className="w-full font-bold flex justify-end">X</p>
+                    <p 
+                    className="w-full font-bold flex justify-end"
+                    onClick={()=>setOpenModal(!openModal)}
+                    >X</p>
                     <Image src={SuccessImage} alt="success" height="100" />
                     <p className="font-bold">Item Added to Cart</p>
                     <div className="flex w-full gap-4">
-                        <button className="w-full underline-offset-4 underline">Continue Shopping</button>
-                        <Link href="/cart" passHref><button className="btn rounded-xl w-full">Proceed to Checkout</button></Link>
+                    <Link href="/category/all-products" passHref><button className="w-full underline-offset-4 underline">Continue Shopping</button>
+                    </Link>
+
+                    <Link href="/cart" passHref><button className="btn rounded-xl w-full">Proceed to Checkout</button>
+                    </Link>
                     </div>
                 </div>
             </Modal>
+            
         </>
     )
 }

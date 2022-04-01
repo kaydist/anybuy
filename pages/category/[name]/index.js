@@ -28,8 +28,8 @@ function Categories({AllProducts}) {
     const [productArray, setProductArray] = useState(AllProducts)
 
     const [thumb, setThumb] = useState({
-        lower: 0,
-        upper: 10000000
+        lower: 10000,
+        upper: 1000000
     })
 
     const filtering=()=>{

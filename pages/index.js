@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import {useRouter} from "next/router"
 
 //component
@@ -96,14 +97,18 @@ export default function Home() {
       <h2 className="font-extrabold text-xl mb-4">Recharge Your Phone</h2>
       <div className="flex flex-row gap-8">
 
+      <Link href="/recharge" passHref>
         <div className="card gap-2 flex flex-col items-center justify-center">
           <Image src={Airtime} alt="" height="50"/>
           <p>Airtime</p>
         </div>
+      </Link>
+      <Link href="/recharge" passHref>
         <div className="card gap-2 flex flex-col items-center justify-center">
           <Image src={Data} alt="" height="50"/>
           <p>Data</p>
         </div>
+      </Link>
         
       </div>
     </section>

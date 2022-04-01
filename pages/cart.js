@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 //redux functions
 import { RemoveFromCart } from '../store/actions/quantityChange';
 
+//components
+import EmptySearch from '../components/EmptySearch';
+
 //image
 import DeleteIcon from "../assets/icons/trash.svg"
 import SummaryCard from '../components/cart/SummaryCard'
@@ -23,6 +26,9 @@ function Cart() {
         <div>
             <h2 className="page_heading">Cart</h2>
             
+        {
+            cart.length !== 0
+            ? <span>
             {
                         currentScreenWidth === "isNotMobile"
                 ? <div className="flex flex-wrap justify-between">
@@ -114,7 +120,7 @@ function Cart() {
                     return (
                             <div key={id} className="flex items-center justify-start gap-4 my-4">
                             <div className="bg-muted w-40 h-30 rounded-xl flex items-center flex-[0.4]">
-                                <Image src={activeType} alt="" height='200' width="200" />
+                                <Image src={activeType} alt="" height='200' width="200" className="rounded-xl" />
                             </div>
                             <div className="flex-[0.6] flex flex-col gap-2">
                                 <p className="font-bold">{name}</p>
@@ -152,6 +158,10 @@ function Cart() {
 
                 </div>
             }
+        </span>
+            
+            : <EmptySearch heading="Cart is Empty" message="Please choose item you want to purchase"/>
+        } 
                 
             
         </div>

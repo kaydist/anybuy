@@ -121,6 +121,7 @@ function ProfileInfo() {
                 onSubmit={(values, { setSubmitting }) => {
                     let userId = currentUser.currentUser.uid
                     AddToProfileInfo(values, userId)
+                    setOpenModal(!openModal)
                 }}
                 >
                 {({

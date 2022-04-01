@@ -102,6 +102,7 @@ function ShippingInfo() {
                 onSubmit={(values, { setSubmitting }) => { 
                     let userId = currentUser.currentUser.uid
                     AddToShippingInfo(values, userId)
+                    setOpenModal(false)
                 }}
                 >
                 {({

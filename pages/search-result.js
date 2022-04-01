@@ -76,7 +76,8 @@ function SearchResult() {
             {
                 searchData.length !== 0
                 ? <ProductContainer category={searchData} />
-                : <EmptySearch />
+                : <EmptySearch heading="Product Not Found" message="sorry, we could not find your product. check out
+                some other great products"/>
             } 
 
 

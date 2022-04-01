@@ -105,7 +105,7 @@ function PaginatedItems({ itemsPerPage, category }) {
   function ProductContainer({category}) {
     return (
         <>
-          <PaginatedItems category={category} itemsPerPage={5} />
+          <PaginatedItems category={category} itemsPerPage={12} />
         </>
     )
 }
