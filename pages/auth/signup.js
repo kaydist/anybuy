@@ -14,7 +14,7 @@ import FacebookIcon from "../../assets/svgs/Facebook-icon.svg"
 import GoogleIcon from "../../assets/svgs/Google-Icon.svg"
 
 //firebase
-import { createUserWithEmail, SignInWithGoogle, SignInWithFacebook } from '../../Config/firebase';
+import { createUserWithEmail, CreateWithGoogle, CreateWithFacebook } from '../../Config/firebase';
 
 const signup = () => {
     return (
@@ -32,7 +32,7 @@ const signup = () => {
                                 <input 
                                 type="radio" 
                                 className="input absolute z-20 inset-0 w-full h-full opacity-0 recharge_form" name="login-type"
-                                onClick={SignInWithGoogle}
+                                onClick={CreateWithGoogle}
                                 />
                                 <span className="checkmark input flex items-center gap-2 h-full mt-0">
                                     <Image src={GoogleIcon} alt="" height="25" />
@@ -43,7 +43,7 @@ const signup = () => {
                                 <input 
                                 type="radio" 
                                 className="input absolute z-20 inset-0 w-full h-full opacity-0 recharge_form" name="login-type"
-                                onClick={SignInWithFacebook}
+                                onClick={CreateWithFacebook}
                                 />
                                 <span className="checkmark input flex items-center gap-2 h-full mt-0">
                                     <Image src={FacebookIcon} alt="" height="25" />
