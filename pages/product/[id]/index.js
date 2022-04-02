@@ -80,7 +80,7 @@ function Item({product}) {
 
 useEffect(()=>{
 setActiveColor(0)
-}, [])
+}, [product])
 
     const ActiveTab = styled.div`
 
