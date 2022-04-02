@@ -59,9 +59,9 @@ function ShippingInfo() {
                         currentUser.currentUser.shippingInfo === null
                     ?   <p>No existing shipping information.<br /> Please create one</p>
                     :   <span>
-                        <p>{currentUser.currentUser.shippingInfo?.firstName} {currentUser.currentUser.shippingInfo?.lastName}</p>
-                        <p>{currentUser.currentUser.shippingInfo?.phoneNumber}</p>
-                        <p>{currentUser.currentUser.shippingInfo?.address}</p>
+                        <p>{currentUser.currentUser.shippingInfo.firstName} {currentUser.currentUser.shippingInfo.lastName}</p>
+                        <p>{currentUser.currentUser.shippingInfo.phoneNumber}</p>
+                        <p>{currentUser.currentUser.shippingInfo.address}</p>
                         </span>
                 }
             </div>
