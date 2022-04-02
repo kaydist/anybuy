@@ -74,6 +74,7 @@ function AllProductsPage({AllProducts}) {
                         onClick={()=>{
                             filtering
                             OpenFilterNot()
+filter
                         }}>
                             Apply
                         </button>
