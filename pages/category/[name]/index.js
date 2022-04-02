@@ -17,7 +17,7 @@ import FilterIcon from "../../../assets/icons/filter.svg"
 import EarpodBanner from "../../../assets/images/earpod.png"
 import Notification from "../../../components/Notification"
 
-import { OpenFilterNot } from "../../animations/filter
+import { OpenFilterNot } from "../../../animations/filter
 
 function Categories({AllProducts}) {
     const router = useRouter()
