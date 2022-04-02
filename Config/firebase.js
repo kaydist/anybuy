@@ -157,7 +157,7 @@ export const signInWithEmail = async(email, password)=>{
 }
 
 // Create User with Google
-export const SignInWithGoogle =()=>{
+export const CreateWithGoogle =()=>{
   const provider = new GoogleAuthProvider();
 
   signInWithPopup(auth, provider)
@@ -184,8 +184,35 @@ export const SignInWithGoogle =()=>{
 });
 }
 
+
+// Sivn User in with Google
+export const SignInWithGoogle =()=>{
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user; 
+    // ...
+    //logging into state
+
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+});
+}
+
 //Create Account with Facebook
-export const SignInWithFacebook =()=>{
+export const CreateWithFacebook =()=>{
   const provider = new FacebookAuthProvider();
 
 signInWithPopup(auth, provider)
@@ -216,6 +243,33 @@ signInWithPopup(auth, provider)
 }
 
 
+//Sign Account with Facebook
+export const SignInWithFacebook =()=>{
+  const provider = new FacebookAuthProvider();
+
+signInWithPopup(auth, provider)
+  .then((result) => {
+    // The signed-in user info.
+    const user = result.user;
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
+
+    console.log(errorMessage)
+    // ...
+  });
+}
 
 // sign out 
 export const signingOut =()=>{
