@@ -17,6 +17,8 @@ import FilterIcon from "../../../assets/icons/filter.svg"
 import EarpodBanner from "../../../assets/images/earpod.png"
 import Notification from "../../../components/Notification"
 
+import { OpenFilterNot } from "../../animations/filter
+
 function Categories({AllProducts}) {
     const router = useRouter()
 
@@ -69,9 +71,10 @@ function Categories({AllProducts}) {
                         </div>
                         <button className="btn float-right mt-10" 
 onClick={()=>{
-filterin
+filtering
+OpenFilterNot()
 filter
-g}}
+}}
 >Apply</button>
                     </div>
                 </div>
