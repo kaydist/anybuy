@@ -73,7 +73,7 @@ function Categories({AllProducts}) {
 onClick={()=>{
 filtering
 OpenFilterNot()
-filter
+filter()
 }}
 >Apply</button>
                     </div>
