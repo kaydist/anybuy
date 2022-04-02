@@ -67,7 +67,12 @@ function Categories({AllProducts}) {
                         <div className="mt-10">
                             <ResizableSlider thumb={thumb}/>
                         </div>
-                        <button className="btn float-right mt-10" onClick={filtering}>Apply</button>
+                        <button className="btn float-right mt-10" 
+onClick={()=>{
+filterin
+filter
+g}}
+>Apply</button>
                     </div>
                 </div>
                 
