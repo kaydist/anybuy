@@ -187,7 +187,20 @@ setActiveColor(0)
                                 >
                                     Add to Cart
                             </button>
-                            <Link href="/cart" passHref><button className="btn rounded-xl w-full bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]">Buy Now</button></Link>
+                            <Link href="/cart" passHref>
+<button 
+className="btn rounded-xl w-full bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]
+onClick={()=> {
+                                const activeType = image[activeColor].picture
+                                const promising = new Promise((resolve)=>{
+                                    resolve(quantity * Number(sellingPrice))
+                                })
+                                promising.then((totalItemPrice)=> {
+                                    dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
+                                })
+                                
+                            }} 
+">Buy Now</button></Link>
                         </div>
 
                         : <div className="flex gap-6">
@@ -208,7 +221,20 @@ setActiveColor(0)
                                 >
                                     Add to Cart
                             </button>
-                            <Link href="/cart" passHref><button className="btn rounded-xl bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]">Buy Now</button></Link>
+                            <Link href="/cart" passHref>
+<button
+ className="btn rounded-xl bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]"
+onClick={()=> {
+                                const activeType = image[activeColor].picture
+                                const promising = new Promise((resolve)=>{
+                                    resolve(quantity * Number(sellingPrice))
+                                })
+                                promising.then((totalItemPrice)=> {
+                                    dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
+                                })
+                                
+                            }} 
+>Buy Now</button></Link>
                             </div>
             }
                     
