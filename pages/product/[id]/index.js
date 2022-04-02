@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import Image from 'next/image'
 import { useSelector, useDispatch } from 'react-redux'
 import { AddToCart } from '../../../store/actions/quantityChange';
@@ -77,6 +77,10 @@ function Item({product}) {
             x: -coord, duration: 1, ease: "Power2.easeOut"
         })  
     }
+
+useEffect(()=>{
+setActiveColor(0)
+}, [])
 
     const ActiveTab = styled.div`
 
