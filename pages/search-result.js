@@ -16,6 +16,8 @@ import EarpodBanner from "../assets/images/earpod.png"
 import FilterIcon from "../assets/icons/filter.svg"
 import EmptySearch from "../components/EmptySearch"
 
+import { OpenFilterNot } from "../animations/filter"
+
 function SearchResult() {
     const router = useRouter()
     const name = router.query.search
@@ -27,8 +29,8 @@ function SearchResult() {
     }
 
     const [thumb, setThumb] = useState({
-        lower: 0,
-        upper: 10000000
+        lower: 10000,
+        upper: 1000000
     })
 
     const filtering=()=>{
@@ -67,7 +69,11 @@ function SearchResult() {
                         <div className="mt-10">
                             <ResizableSlider thumb={thumb}/>
                         </div>
-                        <button className="btn float-right mt-10" onClick={filtering}>Apply</button>
+                        <button className="btn float-right mt-10" onClick={()=>{
+filtering
+OpenFilterNot()
+filter
+}}>Apply</button>
                     </div>
                 </div>
                 
