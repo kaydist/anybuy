@@ -59,10 +59,9 @@ function SearchResult() {
 
 
     return (
-        <div>
-            <header className="flex justify-between gap-8 items-center my-8 relative">
+        <div className="relative">
 <Notification message="Filters Applied" />
-
+            <header className="flex justify-between gap-8 items-center my-8">
                 <p className="page_heading text-2xl lg:text-3xl overflow-hidden whitespace-nowrap text-ellipsis">Search for: “<span className="font-medium">{name}</span>”</p>
                 <div className="relative">
                     <button className="outlined_btn flex items-center gap-2 rounded-lg px-2" onClick={()=> {filter()}}><Image src={FilterIcon} alt="" height="15" /> Filter</button>
@@ -75,7 +74,7 @@ function SearchResult() {
                         <button className="btn float-right mt-10" onClick={()=>{
 filtering
 OpenFilterNot()
-filter
+filter()
 }}>Apply</button>
                     </div>
                 </div>
