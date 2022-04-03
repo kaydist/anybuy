@@ -107,10 +107,9 @@ setActiveColor(0)
         <>
             
         
-            <div className="grid grid-rows-auto-fill lg:grid-rows-1 lg:grid-cols-2 lg:h-[25rem] gap-12">
+            <div className="flex flex-col lg:flex-row lg:h-[25rem] gap-12">
                 <div
-                className="bg-white h-[18rem] w-screen lg:w-full lg:rounded-2xl lg:h-full -mx-3 p-4 lg:p-10 overflow-hidden"
-                
+                className="bg-white h-[18rem] w-screen md:w-full lg:rounded-2xl lg:h-full -mx-3 p-4 lg:p-10 overflow-hidden"
                 >
                 <div className="h-full flex items-center justify-start" ref={productImageContainer}>
                     {
@@ -124,8 +123,8 @@ setActiveColor(0)
                     }
                 </div>
                 </div>
-                <div className="flex flex-col justify-between gap-6">
-                    <h1 className="text-2xl font-bold max-w-[80%]">{name}</h1>
+                <div className="flex flex-col justify-between gap-6 w-full">
+                    <h1 className="text-2xl font-bold w-full lg:max-w-[80%]">{name}</h1>
                     <div className="flex gap-4">
                         <p className="text-2xl font-black">₦{sellingPrice}</p>
                         <p className="text-2xl font-black removed">₦{originalPrice}</p>
@@ -282,6 +281,7 @@ setActiveColor(0)
                                 <p className="mr-3 text-3xl">4.5</p>
                                 <ReactStars 
                                 count= {5}
+                                edit={false}
                                 value= {4.5}
                                 char= {<Star size="20"/>}
                                 isHalf= {false}

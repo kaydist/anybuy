@@ -67,7 +67,7 @@ function ShippingInfo() {
             </div>
 
             <Modal state={openShippingModal} close={()=>setOpenShippingModal(!openShippingModal)}>
-                <div className="card w-[92%] md:w-[32rem] mx-auto]">
+                <div className="card w-[92%] md:w-[32rem] mx-auto">
 
                 <div className="w-full font-bold text-2xl mb-8 flex justify-between">
                 <span className="block">Edit Shipping Info</span>

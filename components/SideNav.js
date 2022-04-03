@@ -31,7 +31,7 @@ function SideNav() {
 
 
     return (
-        <div className="bg-body-bg w-screen h-screen fixed inset-0 z-[49] px-6 pt-8 pb-16 flex justify-between flex-col -translate-x-[100vw]" id="SideNav">
+        <div className="bg-body-bg w-screen min-h-screen fixed inset-0 z-[49] px-6 pt-8 pb-16 flex justify-between flex-col -translate-x-[100vw] overflow-y-auto overflow-x-hidden" id="SideNav">
             <div className="w-full flex justify-between">
                 <div onClick={closeSideNav}>
                     <CloseIcon />

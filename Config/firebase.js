@@ -4,9 +4,7 @@ import { getFirestore, collection, doc, setDoc, getDoc}  from "firebase/firestor
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, updatePassword, FacebookAuthProvider, signOut } from "firebase/auth";
 
 //redux states
-import { useDispatch } from "react-redux";
 import { useRouter } from 'next/router'
-import { login } from "../store/actions/authActions";
 import { OpenUp } from "../animations/popup";
 
 // Your web app's Firebase configuration

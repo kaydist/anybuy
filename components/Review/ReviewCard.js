@@ -18,6 +18,7 @@ function ReviewCard({review, star}) {
                         value={Number(review.rating)}
                         char= {star}
                         isHalf= {false}
+                        edit={false}
                         activeColor= '#FF9315'
                         /> 
                         <p className="ml-3">{review.rating}/5 rating</p>

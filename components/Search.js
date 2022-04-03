@@ -51,6 +51,7 @@ function Search() {
                 placeholder="Search Product"
                 className="input w-full h-full border-0 m-0 py-0 focus:border-0"
                 onChange={handleChange}
+                value={search}
                 />
             </form>
       </div>
@@ -59,7 +60,10 @@ function Search() {
             {
                 result.map((item, idx) => {
                     return (
-                        <div key={idx} className={"p-3"} onClick={handleSubmit}>{item.name}</div>                        
+                        <div key={idx} className={"p-3"} 
+                        onClick={(e)=>{
+                            setSearch(e.currentTarget.innerText)
+                        }}>{item.name}</div>                        
                     )
                 })
             }
