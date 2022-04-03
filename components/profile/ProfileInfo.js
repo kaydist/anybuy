@@ -201,6 +201,7 @@ function ProfileInfo() {
                 </Formik>
                 </div>
             </Modal>
+       
         </>
     )
 }

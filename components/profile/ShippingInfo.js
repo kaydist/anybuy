@@ -41,7 +41,7 @@ export const CloseIcon=()=>{
 }
 
 function ShippingInfo() {
-    const [openModal, setOpenModal] = useState(false)
+    const [openShippingModal, setOpenShippingModal] = useState(false)
     const currentUser = useSelector((state)=> state.auth)
 
 
@@ -49,7 +49,7 @@ function ShippingInfo() {
         <>
             <div className="text-xl font-bold flex justify-between items-center mt-2">
                 <h2>Shipping info</h2>
-                <span onClick={()=>setOpenModal(!openModal)}>
+                <span onClick={()=>setOpenShippingModal(!openShippingModal)}>
                     <EditIcon />
                 </span>
             </div>
@@ -66,15 +66,12 @@ function ShippingInfo() {
                 }
             </div>
 
-            <Modal state={openModal} close={()=>setOpenModal(!openModal)}>
-                <div className="card w-[92%] md:w-[32rem] mx-auto">
+            <Modal state={openShippingModal} close={()=>setOpenShippingModal(!openShippingModal)}>
+                <div className="card w-[92%] md:w-[32rem] mx-auto]">
 
                 <div className="w-full font-bold text-2xl mb-8 flex justify-between">
-                    <span className="block">Edit Shipping Info</span>
-                    <span 
-                    className="block"
-                    onClick={()=>{setOpenModal(!openModal)}}
-                    >
+                <span className="block">Edit Shipping Info</span>
+                    <span className="block"  onClick={()=>setOpenShippingModal(false)}>
                         <CloseIcon />
                     </span>
                 </div> 
@@ -105,7 +102,7 @@ function ShippingInfo() {
                 onSubmit={(values, { setSubmitting }) => { 
                     let userId = currentUser.currentUser.uid
                     AddToShippingInfo(values, userId)
-                    setOpenModal(!openModal)
+                    setOpenShippingModal(!openShippingModal)
                 }}
                 >
                 {({
