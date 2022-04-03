@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react"
 import Image from "next/image"
 import {useRouter} from "next/router"
-import { AllProducts } from "../data/products"
 
 
 //components
@@ -60,7 +59,8 @@ function SearchResult() {
 
     return (
         <div className="relative">
-<Notification message="Filters Applied" />
+            <Notification message="Filters Applied" />
+
             <header className="flex justify-between gap-8 items-center my-8">
                 <p className="page_heading text-2xl lg:text-3xl overflow-hidden whitespace-nowrap text-ellipsis">Search for: “<span className="font-medium">{name}</span>”</p>
                 <div className="relative">
@@ -71,11 +71,15 @@ function SearchResult() {
                         <div className="mt-10">
                             <ResizableSlider thumb={thumb}/>
                         </div>
-                        <button className="btn float-right mt-10" onClick={()=>{
-filtering
-OpenFilterNot()
-filter()
-}}>Apply</button>
+                        <button 
+                        className="btn float-right mt-10"
+                        onClick={()=>{
+                            filtering()
+                            OpenFilterNot()
+                            filter()
+                        }}>
+                            Apply
+                        </button>
                     </div>
                 </div>
                 

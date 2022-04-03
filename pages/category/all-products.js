@@ -58,6 +58,7 @@ function AllProductsPage({AllProducts}) {
     return (
         <div className="relative">
             <Notification message="Filters applied" />
+            
             <header className="flex justify-between items-center my-8">
                 <p className="page_heading">All Products</p>
                 <div className="relative">
@@ -74,7 +75,7 @@ function AllProductsPage({AllProducts}) {
                         onClick={()=>{
                             filtering
                             OpenFilterNot()
-filter()
+                            filter()
                         }}>
                             Apply
                         </button>

@@ -15,7 +15,7 @@ const ResizableSlider = ({thumb, onclick, onchange}) => {
                     className="horizontal-slider w-[18rem] top-100"
                     thumbClassName={SliderStyle.thumb}
                     trackClassName={SliderStyle.track}
-                    defaultValue={[50000, 100000]}
+                    defaultValue={[10000, 1000000]}
                     ariaLabelledby={['Lower-thumb', 'Upper-thumb']}
                     ariaValuetext={state => {               
                     }}
@@ -27,8 +27,8 @@ const ResizableSlider = ({thumb, onclick, onchange}) => {
                     }}
                     // renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
                     pearling
-                    min={50000}
-                    max={100000}
+                    min={10000}
+                    max={1000000}
                     minDistance={500}
                 />
             </div>

@@ -9,9 +9,10 @@ const initiaState = {
 
 const cart = (state=initiaState, action) =>{
 
-    const getID = state.cart.find(item => item.id === action.payload.id)
+    const getID = state.cart.find(item => item.id === action.payload.id)    
     const getIndex = state.cart.findIndex(item => item.id === action.payload.id)
     const getItem = state.cart.find(item => item === getID)
+    // const getVarientID = state.cart.find(item => item.activeTypeId === action.payload.activeTypeId)
     let newArray = [...state.cart]
 
     const UploadCart=(newState)=>{        

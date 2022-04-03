@@ -272,10 +272,14 @@ signInWithPopup(auth, provider)
 }
 
 // sign out 
-export const signingOut =()=>{
-  console.log("test")
-  signOut(auth).then(function() {
-    console.log('Signed Out');
+export const signingOut =async()=>{
+  await signOut(auth)
+  .then(()=>{
+      location.reload()
+  })
+  .then(function() {
+    localStorage.removeItem('persist:AnybuyCart')
+    sessionStorage.removeItem('search')
   }, function(error) {
     console.error('Sign Out Error', error);
   });

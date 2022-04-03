@@ -174,11 +174,12 @@ setActiveColor(0)
                             className="btn rounded-xl w-full h-12"
                             onClick={()=> {
                                 const activeType = image[activeColor].picture
+                                const activeTypeId = image[activeColor].id
                                 const promising = new Promise((resolve)=>{
                                     resolve(quantity * Number(sellingPrice))
                                 })
                                 promising.then((totalItemPrice)=> {
-                                    dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
+                                    dispatch(AddToCart({quantity, id, name, activeType, activeTypeId, sellingPrice, originalPrice, totalItemPrice}))
                                 }).then(()=>{
                                     setOpenModal(!openModal)
                                 })
@@ -188,19 +189,20 @@ setActiveColor(0)
                                     Add to Cart
                             </button>
                             <Link href="/cart" passHref>
-<button 
-className="btn rounded-xl w-full bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]
-onClick={()=> {
+                            <button 
+                            className="btn rounded-xl w-full bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]"
+                            onClick={()=> {
                                 const activeType = image[activeColor].picture
+                                const activeTypeId = image[activeColor].id
                                 const promising = new Promise((resolve)=>{
                                     resolve(quantity * Number(sellingPrice))
                                 })
                                 promising.then((totalItemPrice)=> {
-                                    dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
+                                    dispatch(AddToCart({quantity, id, name, activeType, activeTypeId, sellingPrice, originalPrice, totalItemPrice}))
                                 })
                                 
                             }} 
-">Buy Now</button></Link>
+                        >Buy Now</button></Link>
                         </div>
 
                         : <div className="flex gap-6">
@@ -208,11 +210,12 @@ onClick={()=> {
                             className="btn rounded-xl"
                             onClick={()=> {
                                 const activeType = image[activeColor].picture
+                                const activeTypeId = image[activeColor].id
                                 const promising = new Promise((resolve)=>{
                                     resolve(quantity * Number(sellingPrice))
                                 })
                                 promising.then((totalItemPrice)=> {
-                                    dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
+                                    dispatch(AddToCart({quantity, id, name, activeType, activeTypeId, sellingPrice, originalPrice, totalItemPrice}))
                                 }).then(()=>{
                                     setOpenModal(!openModal)
                                 })
@@ -222,19 +225,20 @@ onClick={()=> {
                                     Add to Cart
                             </button>
                             <Link href="/cart" passHref>
-<button
- className="btn rounded-xl bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]"
-onClick={()=> {
+                            <button
+                            className="btn rounded-xl bg-[#112211] hover:bg-[#0c180c] active:bg-[#0c180c]"
+                            onClick={()=> {
                                 const activeType = image[activeColor].picture
+                                const activeTypeId = image[activeColor].id
                                 const promising = new Promise((resolve)=>{
                                     resolve(quantity * Number(sellingPrice))
                                 })
                                 promising.then((totalItemPrice)=> {
-                                    dispatch(AddToCart({quantity, id, name, activeType, sellingPrice, originalPrice, totalItemPrice}))
+                                    dispatch(AddToCart({quantity, id, name, activeType, activeTypeId,sellingPrice, originalPrice, totalItemPrice}))
                                 })
                                 
                             }} 
->Buy Now</button></Link>
+                            >Buy Now</button></Link>
                             </div>
             }
                     
