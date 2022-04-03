@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import Modal from '../Modal'
 import { AddToShippingInfo, getShippingInfo } from "../../Config/firebase";
@@ -49,7 +49,7 @@ function ShippingInfo() {
         <>
             <div className="text-xl font-bold flex justify-between items-center mt-2">
                 <h2>Shipping info</h2>
-                <span onClick={()=>setOpenModal(true)}>
+                <span onClick={()=>setOpenModal(!openModal)}>
                     <EditIcon />
                 </span>
             </div>
@@ -66,12 +66,15 @@ function ShippingInfo() {
                 }
             </div>
 
-            <Modal state={openModal}>
+            <Modal state={openModal} close={()=>setOpenModal(!openModal)}>
                 <div className="card w-[92%] md:w-[32rem] mx-auto">
 
                 <div className="w-full font-bold text-2xl mb-8 flex justify-between">
                     <span className="block">Edit Shipping Info</span>
-                    <span className="block"  onClick={()=>setOpenModal(false)}>
+                    <span 
+                    className="block"
+                    onClick={()=>{setOpenModal(!openModal)}}
+                    >
                         <CloseIcon />
                     </span>
                 </div> 
@@ -102,7 +105,7 @@ function ShippingInfo() {
                 onSubmit={(values, { setSubmitting }) => { 
                     let userId = currentUser.currentUser.uid
                     AddToShippingInfo(values, userId)
-                    setOpenModal(false)
+                    setOpenModal(!openModal)
                 }}
                 >
                 {({

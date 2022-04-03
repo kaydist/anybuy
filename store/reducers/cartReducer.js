@@ -12,7 +12,6 @@ const cart = (state=initiaState, action) =>{
     const getID = state.cart.find(item => item.id === action.payload.id)    
     const getIndex = state.cart.findIndex(item => item.id === action.payload.id)
     const getItem = state.cart.find(item => item === getID)
-    // const getVarientID = state.cart.find(item => item.activeTypeId === action.payload.activeTypeId)
     let newArray = [...state.cart]
 
     const UploadCart=(newState)=>{        
@@ -23,14 +22,13 @@ const cart = (state=initiaState, action) =>{
     switch (action.type){
         
         case "AddToCart":
-            if(getID === undefined){
+            if(getID === undefined ){
                 let newState = {
                     ...state,
                     cart: state.cart.concat(action.payload),
                     totalCartQuantity: state.totalCartQuantity + action.payload.quantity,
                     totalCartPrice: state.totalCartPrice +  action.payload.totalItemPrice
                 }
-                
                 return newState;
             }else{
                 let newArray = [...state.cart]
@@ -42,7 +40,6 @@ const cart = (state=initiaState, action) =>{
                     totalCartQuantity: state.totalCartQuantity + action.payload.quantity,
                     totalCartPrice: state.totalCartPrice + action.payload.totalItemPrice
                 }
-                
                 return newState;
             }
             

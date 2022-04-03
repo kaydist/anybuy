@@ -370,7 +370,7 @@ setActiveColor(0)
             </aside>
             
             <Modal state={openModal} close={()=>setOpenModal(!openModal)}>
-                <div className="card w-[92%] md:w-[32rem] flex flex-col items-center gap-8">
+                <div className="card w-[92%] mx-auto md:w-[32rem] flex flex-col items-center gap-8">
                     <p 
                     className="w-full font-bold flex justify-end"
                     onClick={()=>setOpenModal(!openModal)}
