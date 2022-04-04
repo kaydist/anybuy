@@ -71,7 +71,7 @@ function Categories({AllProducts}) {
                         </div>
                         <button className="btn float-right mt-10" 
 onClick={()=>{
-filtering
+filtering()
 OpenFilterNot()
 filter()
 }}
