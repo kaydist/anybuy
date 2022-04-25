@@ -58,7 +58,6 @@ export const AddToShippingInfo = async(values, userId) =>{
   }
   try {
     const docRef = await setDoc(doc(db, "users", `${userId}`), data, { merge: true });
-    console.log(docRef.id)
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -91,7 +90,6 @@ export const UpdateCart= async(newState, userId) =>{
   }
   try {
     const docRef = await setDoc(doc(db, "users", `${userId}`), data, { merge: true });
-    console.log(docRef.id)
   } catch (e) {
     console.error("Error adding document: ", e);
   }

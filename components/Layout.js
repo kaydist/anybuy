@@ -12,11 +12,13 @@ import {isMobile} from '../store/actions/screenSizeAction'
 import AuthFooter from "./AuthFooter"
 import Nav from "./Nav"
 import SideNav from "./SideNav"
+import Spinner from './spinner'
 
 //firebase
 import { auth, CheckFirebase, db } from "../Config/firebase"
 import { getDoc, doc, onSnapshot } from 'firebase/firestore'
 import { login } from '../store/actions/authActions'
+import { hideSpinner, ShowSpinner } from '../controller'
 
 
 const Layout=({children})=>{
@@ -36,23 +38,21 @@ const Layout=({children})=>{
         dispatch(isMobile(currentScreenWidth))       
     }, [currentScreenWidth])
 
-    useEffect(()=>{        
-
+    useEffect(()=>{  
         auth.onAuthStateChanged(async(user) => {
             if (user === null) return;
+            ShowSpinner()
             const userId = user.uid  
             const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc)=>{
                 if (doc.data() !== null ) {                
                     dispatch(login(doc.data()))
-                    console.log("Document data:", doc.data());
+                    hideSpinner()
                 } else {
                 console.log("No such document!");
+                hideSpinner()
                 } 
-            })
-               
-        console.log(userId)
+            })     
         })
-
     }, [])
 
     return(
@@ -67,7 +67,7 @@ const Layout=({children})=>{
         </style>
         <link rel="icon" href="/favicon.svg" />
         </Head>
-
+        <Spinner />
         <Nav />
         <SideNav />
 

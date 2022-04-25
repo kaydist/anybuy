@@ -34,6 +34,12 @@ export const AddToRechargeCart = (item) =>{
         payload: item
     }
 }
+export const AddToTotalRechargePrice = (item) =>{
+    return {
+        type: "AddToTotalRechargePrice",
+        payload: item
+    }
+}
 export const RemoveFromRechargeCart = (item) =>{
     return {
         type: "RemoveFromRechargeCart",

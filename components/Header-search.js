@@ -38,54 +38,10 @@ function HeaderSearch({isOpen}) {
         sessionStorage.setItem('search', JSON.stringify(filter))
     }, [search])
 
-    useEffect(()=>{
-        // setTimeout(() => {
-        //     // document.addEventListener('click', function handleClickOutsideBox(event) {
-        //     //     // 👇️ the element the user clicked
-        //     //     console.log('user clicked: ', event.target);
-            
-        //     //     const box = document.getElementById("Nav-Search");
-            
-        //     //     if(isOpen === true){
-        //     //         if (!box.contains(event.target)) {
-        //     //         CloseSearch()
-        //     //         }
-        //     //     }else{
-        //     //         return
-        //     //     }
-        //     // })
-
-        //     console.log("working")
-            
-        // }, 1000);
-            
-            
-    }, [])
 
     return (
     <div className="w-full h-fit flex justify-center items-center">
-        {/* {
-            setTimeout(() => {
-                document.addEventListener('click', function handleClickOutsideBox(event) {
-                    // 👇️ the element the user clicked
-                    console.log('user clicked: ', event.target);
                 
-                    const box = document.getElementById("Nav-Search");
-                
-                    if(isOpen === true){
-                        if (!box.contains(event.target)) {
-                        CloseSearch()
-                        }
-                    }else{
-                        return
-                    }
-                })
-    
-                // console.log("working")
-                
-            }, 2000)
-        } */}
-        
         <div className="w-full lg:w-1/2 flex flex-row-reverse gap-2 bg-white px-4 rounded-lg overflow-visible relative">                        
             <div className="p-3 my-2 w-10 h-10 bg-primary flex items-center justify-center rounded-full" onClick={handleSubmit}>
                 <Image src={SearchIcon} alt="" height="100" />
