@@ -32,8 +32,8 @@ function contact() {
   return (
     <div className="flex flex-col items-center justify-center text-lg font-bold">
       <div className="card flex flex-col w-[92vw] h-[85vh] md:w-[32rem] md:h-[32rem] items-center justify-center gap-4 ">
-        <a href='https://www.behance.net/robiuaadufe' target='_blank'><div className="">Robiu Adepoju Adufe - Product Designer <RedirectLink/></div></a>
-        <a href='https://github.com/kaydist' target='_blank'><div className="inline-block">Oseni Omokayode - UI / Firebase Development <RedirectLink/></div></a>
+        <a href='https://www.behance.net/robiuaadufe' rel="noreferrer" target='_blank'><div className="">Robiu Adepoju Adufe - Product Designer <RedirectLink/></div></a>
+        <a href='https://github.com/kaydist' rel="noreferrer" target='_blank'><div className="inline-block">Oseni Omokayode - UI / Firebase Development <RedirectLink/></div></a>
       </div>
     </div>
   );
