@@ -63,6 +63,7 @@ function Search() {
                         <div key={idx} className={"p-3"} 
                         onClick={(e)=>{
                             setSearch(e.currentTarget.innerText)
+                            handleSubmit(e)
                         }}>{item.name}</div>                        
                     )
                 })
