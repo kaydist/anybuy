@@ -118,9 +118,8 @@ export default function Home() {
         <div className="flex flex-row items-center gap-8 overflow-x-auto overflow-y-hidden w-screen sm:w-full whitespace-nowrap flex-nowrap pr-8">
           {categories.map((category) => {
             return (
-              <a>
+              <a key={category.id}>
                 <div
-                  key={category.id}
                   className="card gap-2 flex flex-col items-center justify-center"
                   onClick={() => {
                     router.push({

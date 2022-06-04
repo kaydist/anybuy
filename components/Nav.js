@@ -86,9 +86,8 @@ function Nav() {
             ["Recharge", "/recharge", "2"],
             ["Contact", "/contact", "3"],
           ].map(([title, url, idx]) => (
-            <a>
+            <a key={idx}>
               <li
-                key={idx}
                 className="nav-links relative inline-block mx-9 font-bold text-sm before:border-b-4 before:border-b-primary before:rounded before:block before:absolute before:-bottom-1 before:content-['']  before:w-0 hover:before:w-1/2 hover:transition-width"
                 onClick={() => {
                   NavChange(idx, url);
