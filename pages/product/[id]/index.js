@@ -86,17 +86,23 @@ function Item({ product }) {
     });
   };
 
-  useEffect((e) => {
-    setActiveColor(0);
-  }, [product]);
+  useEffect(
+    (e) => {
+      setActiveColor(0);
+    },
+    [product]
+  );
 
-  useEffect((e) => {
-    const swatches = document.querySelectorAll(".swatches");
-    swatches.forEach((swatch) => {
-      swatch.style.borderWidth = "0rem";
-    });
-    swatches[activeColor].style.borderWidth = "0.15rem"
-  }, [activeColor]);
+  useEffect(
+    (e) => {
+      const swatches = document.querySelectorAll(".swatches");
+      swatches.forEach((swatch) => {
+        swatch.style.borderWidth = "0rem";
+      });
+      swatches[activeColor].style.borderWidth = "0.15rem";
+    },
+    [activeColor]
+  );
 
   const ActiveTab = styled.div`
     div .react-tabs__tab {

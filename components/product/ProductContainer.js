@@ -18,7 +18,7 @@ function Items({currentItems, pageCount}) {
   }, [pageCount])
 
     return(
-        <section className="grid grid-flow-row lg:grid-cols-4 grid-cols-auto-fill gap-10 w-full overflow-hidden" ref={ProductCardContainer}>
+        <section className="grid grid-flow-row lg:grid-cols-4 grid-cols-auto-fill gap-10 w-full" ref={ProductCardContainer}>
             {   
                 currentItems.map((product, idx) => {
                     return(    
