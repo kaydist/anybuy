@@ -40,8 +40,8 @@ const Layout=({children})=>{
 
     useEffect(()=>{  
         auth.onAuthStateChanged(async(user) => {
-            if (user === null) return;
             ShowSpinner()
+            if (user === null) return;
             const userId = user.uid  
             const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc)=>{
                 if (doc.data() !== null ) {                
@@ -51,7 +51,8 @@ const Layout=({children})=>{
                 console.log("No such document!");
                 hideSpinner()
                 } 
-            })     
+            })
+            hideSpinner()
         })
     }, [])
 
