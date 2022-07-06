@@ -40,8 +40,8 @@ const Layout=({children})=>{
 
     useEffect(()=>{  
         auth.onAuthStateChanged(async(user) => {
-            ShowSpinner()
             if (user === null) return;
+            ShowSpinner()
             const userId = user.uid  
             const docSnap = onSnapshot(doc(db, "users", `${userId}`), (doc)=>{
                 if (doc.data() !== null ) {                
