@@ -19,7 +19,7 @@ function ProductIndex({ title, link, children }) {
           See All {`>`}
         </h3>
       </div>
-      <div className="flex flex-row items-center sm:justify-between gap-8 overflow-x-auto w-screen sm:w-full flex-nowrap py-2 pr-8 lg:px-0">
+      <div className="flex flex-row items-center sm:justify-between gap-8 overflow-x-auto w-full sm:w-full flex-nowrap py-2 pr-8 lg:px-0">
         {children}
       </div>
     </section>
